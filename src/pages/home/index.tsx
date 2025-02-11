@@ -1,12 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { UIConfirm } from '../../components/organisms/UIConfirm';
-import { usePopup } from '../../hooks/usePopup';
-import { useConfirmStore } from '../../components/organisms/UIConfirm/store';
+import { callTest } from '../../api/test';
 import { UIButton } from '../../components/atoms/UIButton';
+import { useConfirmStore } from '../../components/organisms/UIConfirm/store';
 
 const Home = () => {
   const navigator = useNavigate();
   const confirm = useConfirmStore();
+  const { test } = callTest();
   return (
     <div>
       <UIButton
@@ -22,7 +22,18 @@ const Home = () => {
       >
         모달 오픈
       </UIButton>
-      <UIButton>api 연결</UIButton>
+      <UIButton
+        onClick={() => {
+          test({
+            inData: { test: 'test' },
+            onError: (err) => {
+              console.log(err);
+            },
+          });
+        }}
+      >
+        api 연결
+      </UIButton>
       <div className="p-5">
         <div className="grid grid-cols-3 gap-4">
           {/* Contents 1 Box */}
