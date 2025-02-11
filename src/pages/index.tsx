@@ -1,5 +1,6 @@
 import { useState, FormEvent, useEffect } from 'react';
 import { UILoading } from '../components/organisms/UILoading';
+import { UILayout } from '../components/organisms/UILayout';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -9,12 +10,10 @@ const Login = () => {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <UILayout.Center>
       <UILoading />
       <div className="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div className="text-center sm:mx-auto sm:w-full sm:max-w-md">
-          <img className="mx-auto h-16 w-auto" src="/logo.png" alt="대상 로고" />
-        </div>
+        <img className="mx-auto h-16 w-auto" src="/logo.png" alt="대상 로고" />
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white px-4 pb-4 pt-8  sm:rounded-3xl sm:px-10 sm:pb-6 sm:shadow shadow-neutral-400">
             <form className="space-y-6">
@@ -86,7 +85,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </UILayout.Center>
   );
 };
 

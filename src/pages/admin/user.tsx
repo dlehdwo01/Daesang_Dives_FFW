@@ -1,4 +1,4 @@
 const User = () => {
-  return <div>유저관리화면</div>;
+  return <div></div>;
 };
 export default User;

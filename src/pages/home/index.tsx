@@ -16,6 +16,7 @@ import {
 
 // Chart.js 등록
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+import { UILayout } from '../../components/organisms/UILayout';
 
 const Home = () => {
   const navigator = useNavigate();
@@ -60,37 +61,38 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <UIButton
-        onClick={() =>
-          confirm.open({
-            title: '제목',
-            message: '하이',
-            cancelText: '취소',
-            onConfirm: () => {
-              console.log('asdf');
-            },
-          })
-        }
-      >
-        모달 오픈
-      </UIButton>
-      <UIButton
-        onClick={() => {
-          test({
-            inData: { test: 'test' },
-            onError: (err) => {
-              console.log(err);
-            },
-          });
-        }}
-      >
-        api 연결
-      </UIButton>
-      <div className="p-5">
+    <UILayout.Column>
+      <div>
+        <UIButton
+          onClick={() =>
+            confirm.open({
+              message: '오픈',
+              cancelText: '취소',
+              onConfirm: () => {
+                console.log('asdf');
+              },
+            })
+          }
+        >
+          모달 오픈
+        </UIButton>
+        <UIButton
+          onClick={() => {
+            test({
+              inData: { test: 'test' },
+              onError: (err) => {
+                console.log(err);
+              },
+            });
+          }}
+        >
+          api 연결
+        </UIButton>
+      </div>
+      <div className="p-5 overflow-y-auto">
         <div className="grid grid-cols-3 gap-4">
           {/* Contents 1 Box */}
-          {[1, 2, 3].map((item) => (
+          {[1, 2, 3, 1, 1, 1, 1, 1].map((item) => (
             <div className=" p-4 border-zinc-300 border-1 rounded">
               {/* Top */}
               <div className="flex justify-between items-center">
@@ -139,7 +141,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </div>
+    </UILayout.Column>
   );
 };
 
