@@ -13,7 +13,6 @@ const Login = () => {
       <UILoading />
       <div className="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="text-center sm:mx-auto sm:w-full sm:max-w-md">
-          {/*<h1* className="text-3xl font-extrabold text-gray-900 ">Sign in</h1*/}
           <img className="mx-auto h-16 w-auto" src="/logo.png" alt="대상 로고" />
         </div>
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -63,11 +62,12 @@ const Login = () => {
                     checked={formData.rememberMe}
                     onChange={(e) => setFormData({ ...formData, rememberMe: e.target.checked })}
                   />
-                  <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900 ">
+                  <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-700 ">
                     Remember me
                   </label>
                 </div>
-                <div className="text-xs">
+                {/* 이 부분은 로그인 실패시 안내 생각 해보기 */}
+                <div className="text-xs ml-6">
                   <a href="#" className="font-medium text-gray-500 hover:text-gray-400">
                     계정이 없다면 관리자에게 문의해주세요.
                   </a>
@@ -83,13 +83,6 @@ const Login = () => {
                 </button>
               </div>
             </form>
-
-            {/*  <div className="m-auto mt-6 w-fit md:mt-8">
-              <span className="m-auto">
-                계정이 없다면 관리자에게 문의해주세요.
-              </span>
-            </div>
-            */}
           </div>
         </div>
       </div>
