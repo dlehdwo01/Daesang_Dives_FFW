@@ -10,7 +10,7 @@ const pageRoutes = import.meta.glob<{ default: React.ComponentType<any> }>(
 export const AppRoutes = () => {
   return (
     <>
-      <div className="min-w-[1920px] flex flex-col h-[100vh]">
+      <div className="min-w-[1024px] flex flex-col h-[100vh]">
         <UIHeader />
         <Routes>
           {Object.keys(pageRoutes).map((filePath) => {

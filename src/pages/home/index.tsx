@@ -42,6 +42,7 @@ const Home = () => {
   // 차트 옵션
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top' as const,
@@ -89,6 +90,31 @@ const Home = () => {
       <div className="p-5">
         <div className="grid grid-cols-3 gap-4">
           {/* Contents 1 Box */}
+          {[1, 2, 3].map((item) => (
+            <div className=" p-4 border-zinc-300 border-1 rounded">
+              {/* Top */}
+              <div className="flex justify-between items-center">
+                <div className="font-bold">예시용 Chart</div>
+                <Link to={'/home'} className="text-sm">
+                  자세히 보기
+                </Link>
+              </div>
+
+              {/* Mid */}
+              <div className="bg-white text-black p-4 mt-3 border-1 border-zinc-300 rounded h-[300px]">
+                <Bar options={options} data={chartData} />
+              </div>
+
+              {/* Bottom */}
+              <div className="mt-4">
+                <div className="flex justify-between text-sm">
+                  <span>목표: {chartData.datasets[0].data[5]}건</span>
+                  <span>실적: {chartData.datasets[1].data[5]}건</span>
+                </div>
+              </div>
+            </div>
+          ))}
+
           <div className=" p-4 border-zinc-300 border-1 rounded">
             {/* Top */}
             <div className="flex justify-between items-center">
