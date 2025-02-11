@@ -33,18 +33,19 @@ export const UIHeader = () => {
               <li
                 className="font-bold text-zinc-800  px-5 items-center flex h-[100%] cursor-pointer"
                 onClick={() => {
-                  categoryClick({});
+                  navigator('/admin');
                 }}
               >
-                대분류2
+                관리자(홈)
               </li>
               <li
                 className="font-bold text-zinc-800  px-5 items-center flex h-[100%] cursor-pointer"
                 onClick={() => {
+                  navigator('/admin/user');
                   categoryClick({});
                 }}
               >
-                대분류3
+                관리자(유저관리)
               </li>
             </ul>
           </div>

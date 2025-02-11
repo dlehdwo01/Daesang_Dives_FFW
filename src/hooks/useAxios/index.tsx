@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useCallback } from 'react';
 
 export type axiosOptions<T, R> = {
   inData: T;
@@ -9,8 +10,7 @@ export type axiosOptions<T, R> = {
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export const useAxios = () => {
-  console.log(apiUrl);
-  const send = async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
+  const send = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
     const { inData, onError, onSuccess } = axiosOptions;
     try {
       const response = await axios.post<R>(apiUrl + url, inData);
@@ -18,7 +18,7 @@ export const useAxios = () => {
     } catch (err: any) {
       onError?.(err);
     }
-  };
+  }, []);
 
   return { send };
 };
