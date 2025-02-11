@@ -17,6 +17,7 @@ import {
 // Chart.js 등록
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 import { UILayout } from '../../components/organisms/UILayout';
+import { UIFlex } from '../../components/atoms/UIFlex';
 
 const Home = () => {
   const navigator = useNavigate();
@@ -62,7 +63,7 @@ const Home = () => {
 
   return (
     <UILayout.Column>
-      <div>
+      <UIFlex.Row.BaseLine>
         <UIButton
           onClick={() =>
             confirm.open({
@@ -88,7 +89,7 @@ const Home = () => {
         >
           api 연결
         </UIButton>
-      </div>
+      </UIFlex.Row.BaseLine>
       <div className="p-5 overflow-y-auto">
         <div className="grid grid-cols-3 gap-4">
           {/* Contents 1 Box */}
