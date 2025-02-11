@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import React from 'react';
-import { UIHeader } from './components/UIHeader';
-import { UIFooter } from './components/UIFooter';
+import { UIHeader } from './components/organisms/UIHeader';
+import { UIFooter } from './components/organisms/UIFooter';
 
 const pageRoutes = import.meta.glob<{ default: React.ComponentType<any> }>(
   './pages/**/[a-z[]*.tsx',
