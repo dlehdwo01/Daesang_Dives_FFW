@@ -1,7 +1,7 @@
-import { Route, Routes } from 'react-router-dom';
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { UIHeader } from './components/organisms/UIHeader';
-import { UIFooter } from './components/organisms/UIFooter';
+import { UILayout } from './components/organisms/UILayout';
 
 const pageRoutes = import.meta.glob<{ default: React.ComponentType<any> }>(
   './pages/**/[a-z[]*.tsx',
@@ -10,7 +10,7 @@ const pageRoutes = import.meta.glob<{ default: React.ComponentType<any> }>(
 export const AppRoutes = () => {
   return (
     <>
-      <div className="min-w-[1024px] flex flex-col h-[100vh]">
+      <UILayout.PageContainer>
         <UIHeader />
         <Routes>
           {Object.keys(pageRoutes).map((filePath) => {
@@ -34,8 +34,8 @@ export const AppRoutes = () => {
             );
           })}
         </Routes>
-        <UIFooter />
-      </div>
+        {/* <UIFooter /> */}
+      </UILayout.PageContainer>
     </>
   );
 };
