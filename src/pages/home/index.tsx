@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { UIModal } from '../../components/UIModal';
+import { UIModal } from '../../components/atoms/UIModal';
 import { usePopup } from '../../hooks/usePopup';
-import { UIButton } from '../../components/UIButton';
+import { UIButton } from '../../components/atoms/UIButton';
 
 const Home = () => {
   const navigator = useNavigate();
@@ -11,12 +11,12 @@ const Home = () => {
   return (
     <div>
       <UIModal isOpen={popup.isOpen}>
-        <div className="bg-white p-5 rounded flex flex-col gap-3">
-          <div>title</div>
-          <div>message</div>
-          <div className="flex gap-5">
+        <div className="bg-white p-5 rounded flex flex-col gap-3 ">
+          <div className="font-bold text-lg">title</div>
+          <div className="text-md max-w-2xl break-words">aa</div>
+          <div className="flex gap-5 mt-2">
             <UIButton>확인</UIButton>
-            <UIButton>취소</UIButton>
+            <UIButton.Red>취소</UIButton.Red>
           </div>
         </div>
       </UIModal>
