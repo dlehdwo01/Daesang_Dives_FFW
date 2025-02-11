@@ -3,11 +3,11 @@ import { UIModal } from '../../atoms/UIModal';
 
 export const UILoading = () => {
   const [isLoading, setIsLoading] = useState(false);
-
+  // 로딩 시간이 길게 느껴지면 줄이기
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(true);
-    }, 2500);
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -15,17 +15,68 @@ export const UILoading = () => {
     <>
       {!isLoading && (
         <UIModal isOpen={true}>
-          <div className="flex space-x-4">
-            <div className="animate-bounce text-pink-400 text-2xl">D</div>
-            <div className="animate-bounce text-red-600 text-2xl">A</div>
-            <div className="animate-bounce text-orange-600 text-2xl">E</div>
-            <div className="animate-bounce text-blue-950 text-2xl">S</div>
-            <div className="animate-bounce text-purple-800 text-2xl">A</div>
-            <div className="animate-bounce text-orange-400 text-2xl">N</div>
-            <div className="animate-bounce text-amber-300 text-2xl">G</div>
+          <div className="flex space-x-2 text-6xl font-bold">
+            <div className="text-pink-400 animate-bottom-bounce" style={{ animationDelay: '0ms' }}>
+              D
+            </div>
+            <div className="text-red-600 animate-bottom-bounce" style={{ animationDelay: '40ms' }}>
+              A
+            </div>
+            <div
+              className="text-orange-600 animate-bottom-bounce"
+              style={{ animationDelay: '80ms' }}
+            >
+              E
+            </div>
+            <div
+              className="text-blue-950 animate-bottom-bounce"
+              style={{ animationDelay: '120ms' }}
+            >
+              S
+            </div>
+            <div
+              className="text-purple-800 animate-bottom-bounce"
+              style={{ animationDelay: '160ms' }}
+            >
+              A
+            </div>
+            <div
+              className="text-orange-400 animate-bottom-bounce"
+              style={{ animationDelay: '200ms' }}
+            >
+              N
+            </div>
+            <div
+              className="text-amber-300 animate-bottom-bounce"
+              style={{ animationDelay: '240ms' }}
+            >
+              G
+            </div>
           </div>
         </UIModal>
       )}
     </>
   );
+
+  {
+    /*  파도타기가 어색해 보이면 다 같이 bounce 하는 애니메이션
+  return (
+    <>
+      {!isLoading && (
+        <UIModal isOpen={true}>
+          <div className="flex space-x-2 text-6xl font-bold">
+            <div className="text-pink-400 ">D</div>
+            <div className="text-red-600 ">A</div>
+            <div className="text-orange-600 ">E</div>
+            <div className="text-blue-950 ">S</div>
+            <div className="text-purple-800 ">A</div>
+            <div className="text-orange-400 ">N</div>
+            <div className="text-amber-300 ">G</div>
+          </div>
+        </UIModal>
+      )}
+    </>
+  );
+*/
+  }
 };
