@@ -10,7 +10,7 @@ const pageRoutes = import.meta.glob<{ default: React.ComponentType<any> }>(
 export const AppRoutes = () => {
   return (
     <>
-      <div className="min-w-[1025px] contain-content">
+      <div className="min-w-[1920px] flex flex-col h-[100vh]">
         <UIHeader />
         <Routes>
           {Object.keys(pageRoutes).map((filePath) => {
@@ -18,6 +18,7 @@ export const AppRoutes = () => {
               .replace('./pages', '') // ./pages 제거
               .replace(/\.tsx$/, '') // .tsx 확장자 제거
               .replace(/\/index$/, ''); // index.tsx는 루트로 처리
+            console.log(routePath);
             // 페이지 컴포넌트를 동적으로 import하고 Route로 변환
             const PageComponent = React.lazy(() => pageRoutes[filePath]());
             return (
