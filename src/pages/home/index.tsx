@@ -86,31 +86,33 @@ const Home = () => {
   return (
     <>
       <UIFlex.Row.BaseLine>
-        <UIButton
-          onClick={() =>
-            confirm.open({
-              message: '오픈',
-              cancelText: '취소',
-              onConfirm: () => {
-                console.log('asdf');
-              },
-            })
-          }
-        >
-          모달 오픈
-        </UIButton>
-        <UIButton
-          onClick={() => {
-            test({
-              inData: { test: 'test' },
-              onError: (err) => {
-                console.log(err);
-              },
-            });
-          }}
-        >
-          api 연결
-        </UIButton>
+        <div>
+          <UIButton
+            onClick={() =>
+              confirm.open({
+                title: '알림',
+                message: '아이디 또는 비밀번호가 일치하지 않습니다',
+                onConfirm: () => {
+                  console.log('asdf');
+                },
+              })
+            }
+          >
+            모달 오픈
+          </UIButton>
+          <UIButton
+            onClick={() => {
+              test({
+                inData: { test: 'test' },
+                onError: (err) => {
+                  console.log(err);
+                },
+              });
+            }}
+          >
+            api 연결
+          </UIButton>
+        </div>
       </UIFlex.Row.BaseLine>
       <div className="p-5 overflow-y-auto">
         <div className="grid grid-cols-3 gap-4">

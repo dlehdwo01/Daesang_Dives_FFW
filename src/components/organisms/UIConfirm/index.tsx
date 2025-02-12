@@ -8,10 +8,10 @@ export const UIConfirm = () => {
   return (
     <>
       <UIModal isOpen={isOpen}>
-        <UIFlex.Column className="p-5 gap-3 rounded">
-          {data.title && <div className="font-bold text-lg">{data.title}</div>}
-          <div className="text-md max-w-2xl break-words">{data.message}</div>
-          <div className="flex gap-5 mt-2">
+        <UIFlex.Column className="px-8 py-4 pt-8 gap-3 rounded-3xl shadow shadow-neutral-400">
+          <div className="font-bold text-lg">{data.title ?? '알림'}</div>
+          <div className="text-md max-w-2xl break-words ">{data.message}</div>
+          <div className="flex gap-5 mt-4">
             <UIButton
               onClick={() => {
                 close();

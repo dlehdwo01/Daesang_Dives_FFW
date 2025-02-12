@@ -6,7 +6,8 @@ import { UIAdminLayout } from '../../components/organisms/UILayout/admin';
 import { UIInput } from '../../components/atoms/UIInput';
 import { UISearchBar } from '../../components/molecules/UISearchBar';
 import { useRef } from 'react';
-import { UITabel } from '../../components/molecules/UITable/UITable';
+import { UITable } from '../../components/molecules/UITable/UITable';
+import { UILink } from '../../components/atoms/UILink';
 
 const Admin = () => {
   const searchVal = useRef(''); // 검색어
@@ -38,8 +39,8 @@ const Admin = () => {
           </UIFlex.Row>
         </UIFlex.Row.Between>
         <UIFlex.Column className="overflow-hidden">
-          {/* h-[539px]  */}
-          <UITabel
+          {/* 테이블은 엑셀파일 확인 이후 dataset 수정 예정  */}
+          <UITable
             thead={['컬럼1', '컬럼1', '컬럼1', '컬럼1', '컬럼1', '컬럼1', '컬럼1', '컬럼1']}
             tbody={[
               ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
@@ -54,20 +55,20 @@ const Admin = () => {
           />
           {/* paging */}
           <UIFlex.Row.Center className="gap-2 mt-3 font-bold text-zinc-400">
-            <Link to={'/admin'}>
-              <SlArrowLeft size={13} strokeWidth={80} />
-            </Link>
+            <UILink to={'/admin'}>
+              <SlArrowLeft size={13} strokeWidth={50} color="oklch(0.551 0.027 264.364)" />
+            </UILink>
 
             {/* 반복부분 */}
-            <Link to={'/admin'}>1</Link>
-            <Link to={'/admin'} className="text-zinc-700">
+            <UILink to={'/admin'}>1</UILink>
+            <UILink to={'/admin'} className="!font-bold">
               2
-            </Link>
-            <Link to={'/admin'}>3</Link>
+            </UILink>
+            <UILink to={'/admin'}>3</UILink>
 
-            <Link to={'/admin'}>
-              <SlArrowRight size={13} strokeWidth={80} />
-            </Link>
+            <UILink to={'/admin'}>
+              <SlArrowRight size={13} strokeWidth={50} color="oklch(0.551 0.027 264.364)" />
+            </UILink>
           </UIFlex.Row.Center>
         </UIFlex.Column>
       </UIFlex.Column>

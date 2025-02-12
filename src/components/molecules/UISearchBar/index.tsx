@@ -19,21 +19,25 @@ export const UISearchBar = ({
 }) => {
   return (
     <UIFlex.Row className="gap-2 items-center">
-      <UIText className="font-semibold">{title ?? '검색'}</UIText>
-      <UIInput ref={ref} />
+      <UIText>{title ?? '검색'}</UIText>
+      <div>
+        <UIInput ref={ref} />
+      </div>
 
-      {options && (
-        <select className="text-xs p-1 border-1 rounded">
-          {options?.map((option) => (
-            <option value={option.value} className="w-fit">
-              {option.label}
-            </option>
-          ))}
-        </select>
-      )}
-      <UIButton onClick={onSearch} className="!p-1 text-sm">
-        {btn ?? '검색'}
-      </UIButton>
+      <div>
+        {options && (
+          <select className="block w-full  rounded-md border border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-400">
+            {options?.map((option) => (
+              <option value={option.value} className="w-fit">
+                {option.label}
+              </option>
+            ))}
+          </select>
+        )}
+      </div>
+      <div>
+        <UIButton onClick={onSearch}>{btn ?? '검색'}</UIButton>
+      </div>
     </UIFlex.Row>
   );
 };
