@@ -62,7 +62,7 @@ const Home = () => {
   };
 
   return (
-    <UILayout.Column>
+    <>
       <UIFlex.Row.BaseLine>
         <UIButton
           onClick={() =>
@@ -142,7 +142,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </UILayout.Column>
+    </>
   );
 };
 

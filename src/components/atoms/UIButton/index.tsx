@@ -1,6 +1,6 @@
-type ButtonProps = {
-  className?: string;
-  children: string;
+import { UIType } from '../../UIType';
+
+type ButtonProps = UIType & {
   onClick?: () => void;
 };
 
