@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
-import { UIFlex } from '../components/atoms/UIFlex';
-import { UILoading } from '../components/organisms/UILoading';
-import { UIButton } from '../components/atoms/UIButton';
-import { UICard } from '../components/molecules/UICard';
-import { UIInput } from '../components/atoms/UIInput';
-import { UIText } from '../components/atoms/UIText';
-import { UILink } from '../components/atoms/UILink';
-import { UILayout } from '../components/organisms/UILayout';
-import { UILogo } from '../components/atoms/UILogo';
+
 import { usePopup } from '../hooks/usePopup';
+import { UILayout } from '../components/UI/organisms/UILayout';
+import { UILoading } from '../components/UI/organisms/UILoading';
+import { UIFlex } from '../components/UI/atoms/UIFlex';
+import { UILogo } from '../components/UI/atoms/UILogo';
+import { UICard } from '../components/UI/molecules/UICard';
+import { UIText } from '../components/UI/atoms/UIText';
+import { UIInput } from '../components/UI/atoms/UIInput';
+import { UILink } from '../components/UI/atoms/UILink';
+import { UIButton } from '../components/UI/atoms/UIButton';
 
 const Login = () => {
   const [formData, setFormData] = useState({
