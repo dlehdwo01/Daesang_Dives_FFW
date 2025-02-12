@@ -1,6 +1,6 @@
-import { useState, FormEvent, useEffect } from 'react';
+import { useState } from 'react';
+import { UIFlex } from '../components/atoms/UIFlex';
 import { UILoading } from '../components/organisms/UILoading';
-import { UILayout } from '../components/organisms/UILayout';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +10,7 @@ const Login = () => {
   });
 
   return (
-    <UILayout.Center>
+    <UIFlex.Row.Center className="flex-grow">
       <UILoading />
       <div className="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
         <img className="mx-auto h-16 w-auto" src="/logo.png" alt="대상 로고" />
@@ -85,7 +85,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </UILayout.Center>
+    </UIFlex.Row.Center>
   );
 };
 
