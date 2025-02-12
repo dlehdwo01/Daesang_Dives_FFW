@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { UIFlex } from '../components/atoms/UIFlex';
 import { UILoading } from '../components/organisms/UILoading';
+import { UIButton } from '../components/atoms/UIButton';
+import { UICard } from '../components/molecules/UICard';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +17,7 @@ const Login = () => {
       <div className="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
         <img className="mx-auto h-16 w-auto" src="/logo.png" alt="대상 로고" />
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white px-4 pb-4 pt-8  sm:rounded-3xl sm:px-10 sm:pb-6 sm:shadow shadow-neutral-400">
+          <UICard>
             <form className="space-y-6">
               <div>
                 <label htmlFor="id" className="block text-sm font-medium text-gray-800 ">
@@ -73,16 +75,10 @@ const Login = () => {
                 </div>
               </div>
               <div>
-                <button
-                  data-testid="login"
-                  type="submit"
-                  className="group relative flex w-full justify-center rounded-md border border-transparent bg-[#695fbf] px-4 py-2 text-sm font-medium text-white hover:bg-[#5a51a6] focus:outline-none focus:ring-2 focus:ring-[#695fbf] focus:ring-offset-2 disabled:cursor-wait disabled:opacity-50"
-                >
-                  LOGIN
-                </button>
+                <UIButton.Submit>Login</UIButton.Submit>
               </div>
             </form>
-          </div>
+          </UICard>
         </div>
       </div>
     </UIFlex.Row.Center>

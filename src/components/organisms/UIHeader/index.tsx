@@ -52,10 +52,9 @@ export const UIHeader = () => {
               </li>
             </ul>
           </UIFlex.Row>
-
-          <UIButton className=" mr-32" onClick={logout}>
-            로그아웃
-          </UIButton>
+          <div className="mr-16">
+            <UIButton onClick={logout}>로그아웃</UIButton>
+          </div>
         </UIFlex.Row.Between>
       )}
     </>
