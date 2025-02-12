@@ -3,6 +3,7 @@ export type chartDataSet = {
   label?: string; // 데이터 레이블 (예:'목표 막대기 ','실적 막대기')
   data: number[]; // 실제 데이터 배열
   backgroundColor: string; //  그래프 색
+  borderColor?: string;
 };
 
 // 차트 컴포넌트의 props 타입 정의
