@@ -1,11 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { callTest } from '../../api/test';
-import { UIButton } from '../../components/atoms/UIButton';
-import { useConfirmStore } from '../../components/organisms/UIConfirm/store';
-import { UIChart } from '../../components/organisms/UIChart';
-
-import { UILayout } from '../../components/organisms/UILayout';
-import { UIFlex } from '../../components/atoms/UIFlex';
+import { useConfirmStore } from '../../components/UI/organisms/UIConfirm/store';
+import { UIFlex } from '../../components/UI/atoms/UIFlex';
+import { UIButton } from '../../components/UI/atoms/UIButton';
+import { UIChart } from '../../components/UI/organisms/UIChart';
 
 const Home = () => {
   const navigator = useNavigate();
