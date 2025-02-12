@@ -24,7 +24,7 @@ export const UIHeader = () => {
             </Link>
             <HeaderUl />
           </UIFlex.Row>
-          <div className="mr-16">
+          <div className="mr-5">
             <UIButton onClick={logout}>로그아웃</UIButton>
           </div>
         </UIFlex.Row.Between>

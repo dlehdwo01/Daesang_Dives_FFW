@@ -21,14 +21,14 @@ export const UITable = ({ thead, tbody }: { thead: string[]; tbody: string[][] }
                 {record.map((item, index2) => {
                   return (
                     <td
-                      className="border-r-zinc-300 border-r p-1 max-w-[50px] truncate"
+                      className="border-r-zinc-300 border-b-zinc-300 border-b  border-r p-1 max-w-[50px] truncate "
                       key={index + '-' + index2}
                     >
                       {item}
                     </td>
                   );
                 })}
-                <td className=" text-center p-1">
+                <td className="text-center p-1 border-b-zinc-300 border-b">
                   <input type="checkbox"></input>
                 </td>
               </tr>
