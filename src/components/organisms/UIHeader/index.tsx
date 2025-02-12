@@ -1,5 +1,8 @@
 import { useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { UIFlex } from '../../atoms/UIFlex';
+import { UIButton } from '../../atoms/UIButton';
+import { UIText } from '../../atoms/UIText';
 
 export const UIHeader = () => {
   const navigator = useNavigate();
@@ -18,8 +21,8 @@ export const UIHeader = () => {
   return (
     <>
       {noRender.some((str) => path.pathname !== str) && (
-        <div className="flex  items-center justify-between bg-white border-b-1 border-zinc-300">
-          <div className="flex gap-x-10 ">
+        <UIFlex.Row.Between className="border-b-1 border-zinc-300">
+          <UIFlex.Row className="gap-x-10 ">
             <Link to="/home" className="p-5 w-[220px]">
               <img src="logo.png"></img>
             </Link>
@@ -28,7 +31,7 @@ export const UIHeader = () => {
                 className="font-bold text-zinc-800  px-5 items-center flex h-[100%] cursor-pointer"
                 onClick={() => navigator('/')}
               >
-                로그인화면으로(임시)
+                <UIText.Title>로그인화면으로(임시)</UIText.Title>
               </li>
               <li
                 className="font-bold text-zinc-800  px-5 items-center flex h-[100%] cursor-pointer"
@@ -36,7 +39,7 @@ export const UIHeader = () => {
                   navigator('/admin');
                 }}
               >
-                관리자(홈)
+                <UIText.Title>관리자(홈)</UIText.Title>
               </li>
               <li
                 className="font-bold text-zinc-800  px-5 items-center flex h-[100%] cursor-pointer"
@@ -45,18 +48,15 @@ export const UIHeader = () => {
                   categoryClick({});
                 }}
               >
-                관리자(유저관리)
+                <UIText.Title>관리자(유저관리)</UIText.Title>
               </li>
             </ul>
-          </div>
+          </UIFlex.Row>
 
-          <button
-            className=" mr-32 text-md font-semibold p-1 border-b-1 text-zinc-800 cursor-pointer"
-            onClick={logout}
-          >
+          <UIButton className=" mr-32" onClick={logout}>
             로그아웃
-          </button>
-        </div>
+          </UIButton>
+        </UIFlex.Row.Between>
       )}
     </>
   );

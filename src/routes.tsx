@@ -10,7 +10,7 @@ const pageRoutes = import.meta.glob<{ default: React.ComponentType<any> }>(
 export const AppRoutes = () => {
   return (
     <>
-      <UILayout.PageContainer>
+      <UILayout.Page>
         <UIHeader />
         <Routes>
           {Object.keys(pageRoutes).map((filePath) => {
@@ -35,7 +35,7 @@ export const AppRoutes = () => {
           })}
         </Routes>
         {/* <UIFooter /> */}
-      </UILayout.PageContainer>
+      </UILayout.Page>
     </>
   );
 };
