@@ -4,6 +4,7 @@ import { useConfirmStore } from '../../components/UI/organisms/UIConfirm/store';
 import { UIFlex } from '../../components/UI/atoms/UIFlex';
 import { UIButton } from '../../components/UI/atoms/UIButton';
 import { UIChart } from '../../components/UI/organisms/UIChart';
+import { ChangePwdModal } from '../../components/ChangePwdModal';
 
 const Home = () => {
   const navigator = useNavigate();
