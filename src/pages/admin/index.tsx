@@ -1,13 +1,11 @@
-import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
-import { Link } from 'react-router-dom';
-import { UIButton } from '../../components/atoms/UIButton';
-import { UIFlex } from '../../components/atoms/UIFlex';
-import { UIAdminLayout } from '../../components/organisms/UILayout/admin';
-import { UIInput } from '../../components/atoms/UIInput';
-import { UISearchBar } from '../../components/molecules/UISearchBar';
 import { useRef } from 'react';
-import { UITable } from '../../components/molecules/UITable/UITable';
-import { UILink } from '../../components/atoms/UILink';
+import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
+import { UIAdminLayout } from '../../components/UI/organisms/UILayout/admin';
+import { UIFlex } from '../../components/UI/atoms/UIFlex';
+import { UISearchBar } from '../../components/UI/molecules/UISearchBar';
+import { UIButton } from '../../components/UI/atoms/UIButton';
+import { UITable } from '../../components/UI/molecules/UITable/UITable';
+import { UILink } from '../../components/UI/atoms/UILink';
 
 const Admin = () => {
   const searchVal = useRef(''); // 검색어
