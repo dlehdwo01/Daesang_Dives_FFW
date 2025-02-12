@@ -26,12 +26,16 @@ export const UISide = ({ children }: { children: ReactNode }) => {
 UISide.Admin = () => {
   const category = [
     {
-      label: '관리자 카테고리1',
+      label: '관리자 홈',
       url: '/admin',
     },
     {
-      label: '관리자 카테고리2',
-      url: '/admin',
+      label: '영업실적 등록',
+      url: '/admin/sales/insert',
+    },
+    {
+      label: '영업실적 조회',
+      url: '/admin/sales/result',
     },
     {
       label: '관리자 카테고리3',

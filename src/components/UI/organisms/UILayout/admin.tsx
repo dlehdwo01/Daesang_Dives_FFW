@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
-import { UIFlex } from '../../atoms/UIFlex';
-import { UIText } from '../../atoms/UIText';
+import { UIFlex } from '@/components/UI/atoms/UIFlex';
 import { UISide } from '../UISide';
+import { UIText } from '../../atoms/UIText';
 
 export const UIAdminLayout = () => {
   return (
@@ -12,7 +12,15 @@ export const UIAdminLayout = () => {
 };
 
 // 관리자 화면 레이아웃
-UIAdminLayout.Basic = ({ title, children }: { title: string; children: ReactNode }) => {
+UIAdminLayout.Basic = ({
+  title,
+  message,
+  children,
+}: {
+  title: string;
+  message?: string;
+  children: ReactNode;
+}) => {
   return (
     <UIFlex.Row className="flex-grow overflow-hidden">
       <UISide.Admin />
@@ -20,6 +28,7 @@ UIAdminLayout.Basic = ({ title, children }: { title: string; children: ReactNode
         {/* <UIText>관리자</UIText>
           <br /> */}
         <UIText.Header className="!text-3xl">{title}</UIText.Header>
+        {message && <UIText>{message}</UIText>}
         {children}
       </UIFlex.Column>
     </UIFlex.Row>
