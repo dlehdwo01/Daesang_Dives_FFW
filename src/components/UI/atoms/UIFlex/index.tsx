@@ -39,5 +39,8 @@ Row.BaseLine = ({ children, className }: UIProps) => (
     {children}
   </UIFlex.Row>
 );
+Row.End = ({ children, className }: UIProps) => (
+  <UIFlex.Row className={` items-center justify-end ${className ?? ''}`}>{children}</UIFlex.Row>
+);
 
 UIFlex.Row = Row;

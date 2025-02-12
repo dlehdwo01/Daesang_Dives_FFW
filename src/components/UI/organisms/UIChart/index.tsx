@@ -61,7 +61,7 @@ export const UIChart = ({ title, labels, datasets, onDetailClick }: chartProps) 
   };
 
   return (
-    <UICard>
+    <UICard className="h-fit">
       {/* Top */}
       <UIFlex.Row.Between>
         <UIText.Title>{title}</UIText.Title>
@@ -81,8 +81,9 @@ export const UIChart = ({ title, labels, datasets, onDetailClick }: chartProps) 
 
       {/* Bottom */}
       <UIFlex.Row.Between className="mt-4">
-        <UIText>목표: {datasets[0].data[5]}건</UIText>
-        <UIText>실적: {datasets[1].data[5]}건</UIText>
+        asd
+        {/* <UIText>목표: {datasets[0].data[5]}건</UIText>
+        <UIText>실적: {datasets[1].data[5]}건</UIText> */}
       </UIFlex.Row.Between>
     </UICard>
   );
