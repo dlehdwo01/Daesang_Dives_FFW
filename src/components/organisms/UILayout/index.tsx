@@ -16,3 +16,7 @@ UILayout.Page = ({ children, className }: UILayoutProps) => {
     </UILayout>
   );
 };
+
+UILayout.Center = ({ children, className }: UILayoutProps) => {
+  return <UILayout className={`justify-center items-center ${className}`}>{children}</UILayout>;
+};

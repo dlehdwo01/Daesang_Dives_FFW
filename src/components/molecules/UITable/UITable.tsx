@@ -1,6 +1,8 @@
+import { UICard } from '../UICard';
+
 export const UITable = ({ thead, tbody }: { thead: string[]; tbody: string[][] }) => {
   return (
-    <div className="border-2 border-zinc-300 rounded overflow-y-auto">
+    <UICard className="!p-0  overflow-y-auto">
       <table className="w-full h-max ">
         <thead className="sticky top:0 inset-0">
           <tr className="text-center border-b border-zinc-300 bg-zinc-100 ">
@@ -34,6 +36,6 @@ export const UITable = ({ thead, tbody }: { thead: string[]; tbody: string[][] }
           })}
         </tbody>
       </table>
-    </div>
+    </UICard>
   );
 };
