@@ -1,13 +1,13 @@
-import { UIType } from '../../UIType';
+import { UIProps } from '../../UIProps';
 
-type ButtonProps = UIType & {
+type ButtonProps = UIProps & {
   onClick?: () => void;
 };
 
 export const UIButton = ({ className, children, onClick }: ButtonProps) => {
   return (
     <button
-      className={`cursor-pointer rounded bg-gray-100 p-2 text-sm border border-zinc-300 hover:bg-gray-200 font-semibold text-gray-800 ${className}`}
+      className={`cursor-pointer group relative flex w-full justify-center rounded-md border border-transparent bg-gray-400 px-4 py-2 text-sm font-medium text-white hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:cursor-wait disabled:opacity-50 ${className}`}
       onClick={() => onClick?.()}
     >
       {children}
@@ -18,7 +18,18 @@ export const UIButton = ({ className, children, onClick }: ButtonProps) => {
 UIButton.Red = ({ className, children, onClick }: ButtonProps) => {
   return (
     <UIButton
-      className={`bg-red-100 hover:bg-red-200 !border-red-200 ${className}`}
+      className={`bg-red-300 hover:bg-red-400  focus:ring-red-400 ${className}`}
+      onClick={onClick}
+    >
+      {children}
+    </UIButton>
+  );
+};
+
+UIButton.Submit = ({ className, children, onClick }: ButtonProps) => {
+  return (
+    <UIButton
+      className={`!bg-[#695fbf] !hover:bg-[#5a51a6]  !focus:ring-[#695fbf] ${className}`}
       onClick={onClick}
     >
       {children}

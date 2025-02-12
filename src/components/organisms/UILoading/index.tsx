@@ -1,60 +1,39 @@
-import { useEffect, useState } from 'react';
 import { UIModal } from '../../atoms/UIModal';
 
-export const UILoading = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  // 로딩 시간이 길게 느껴지면 줄이기
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(true);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
+export const UILoading = ({ isOpen }: { isOpen: boolean }) => {
   return (
     <>
-      {!isLoading && (
-        <UIModal isOpen={true}>
-          <div className="flex space-x-2 text-6xl font-bold">
-            <div className="text-pink-400 animate-bottom-bounce" style={{ animationDelay: '0ms' }}>
-              D
-            </div>
-            <div className="text-red-600 animate-bottom-bounce" style={{ animationDelay: '40ms' }}>
-              A
-            </div>
-            <div
-              className="text-orange-600 animate-bottom-bounce"
-              style={{ animationDelay: '80ms' }}
-            >
-              E
-            </div>
-            <div
-              className="text-blue-950 animate-bottom-bounce"
-              style={{ animationDelay: '120ms' }}
-            >
-              S
-            </div>
-            <div
-              className="text-purple-800 animate-bottom-bounce"
-              style={{ animationDelay: '160ms' }}
-            >
-              A
-            </div>
-            <div
-              className="text-orange-400 animate-bottom-bounce"
-              style={{ animationDelay: '200ms' }}
-            >
-              N
-            </div>
-            <div
-              className="text-amber-300 animate-bottom-bounce"
-              style={{ animationDelay: '240ms' }}
-            >
-              G
-            </div>
+      <UIModal isOpen={isOpen}>
+        <div className="flex space-x-2 text-6xl font-bold">
+          <div className="text-pink-400 animate-bottom-bounce" style={{ animationDelay: '0ms' }}>
+            D
           </div>
-        </UIModal>
-      )}
+          <div className="text-red-600 animate-bottom-bounce" style={{ animationDelay: '40ms' }}>
+            A
+          </div>
+          <div className="text-orange-600 animate-bottom-bounce" style={{ animationDelay: '80ms' }}>
+            E
+          </div>
+          <div className="text-blue-950 animate-bottom-bounce" style={{ animationDelay: '120ms' }}>
+            S
+          </div>
+          <div
+            className="text-purple-800 animate-bottom-bounce"
+            style={{ animationDelay: '160ms' }}
+          >
+            A
+          </div>
+          <div
+            className="text-orange-400 animate-bottom-bounce"
+            style={{ animationDelay: '200ms' }}
+          >
+            N
+          </div>
+          <div className="text-amber-300 animate-bottom-bounce" style={{ animationDelay: '240ms' }}>
+            G
+          </div>
+        </div>
+      </UIModal>
     </>
   );
 

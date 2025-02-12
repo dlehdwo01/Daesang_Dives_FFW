@@ -7,7 +7,7 @@ export const UIInput = ({ ref }: { ref: RefObject<string> }) => {
   }, [input]);
   return (
     <input
-      className="border-1 rounded border-zinc-500 p-1 text-sm"
+      className="block w-full rounded-md border appearance-none  border-gray-300 px-3 py-2 placeholder-gray-500 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-gray-400 "
       onChange={(e) => {
         setInput(e.target.value);
       }}

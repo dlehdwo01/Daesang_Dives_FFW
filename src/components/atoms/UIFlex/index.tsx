@@ -1,23 +1,23 @@
-import { UIType } from '../../UIType';
+import { UIProps } from '../../UIProps';
 
-export const UIFlex = ({ children, className }: UIType) => {
+export const UIFlex = ({ children, className }: UIProps) => {
   return <div className={`flex bg-white ${className ?? ''}`}>{children}</div>;
 };
-const Column = ({ children, className }: UIType) => (
+const Column = ({ children, className }: UIProps) => (
   <UIFlex className={`flex-col  ${className ?? ''}`}>{children}</UIFlex>
 );
 
-Column.Center = ({ children, className }: UIType) => (
+Column.Center = ({ children, className }: UIProps) => (
   <UIFlex.Column className={`items-center justify-center  ${className ?? ''}`}>
     {children}
   </UIFlex.Column>
 );
-Column.Between = ({ children, className }: UIType) => (
+Column.Between = ({ children, className }: UIProps) => (
   <UIFlex.Column className={`items-center justify-between ${className ?? ''}`}>
     {children}
   </UIFlex.Column>
 );
-Column.BaseLine = ({ children, className }: UIType) => (
+Column.BaseLine = ({ children, className }: UIProps) => (
   <UIFlex.Column className={`items-center justify-baseline  ${className ?? ''}`}>
     {children}
   </UIFlex.Column>
@@ -25,16 +25,16 @@ Column.BaseLine = ({ children, className }: UIType) => (
 
 UIFlex.Column = Column;
 
-const Row = ({ children, className }: UIType) => (
+const Row = ({ children, className }: UIProps) => (
   <UIFlex className={`flex-row  ${className ?? ''}`}>{children}</UIFlex>
 );
-Row.Center = ({ children, className }: UIType) => (
+Row.Center = ({ children, className }: UIProps) => (
   <UIFlex.Row className={` items-center justify-center ${className ?? ''}`}>{children}</UIFlex.Row>
 );
-Row.Between = ({ children, className }: UIType) => (
+Row.Between = ({ children, className }: UIProps) => (
   <UIFlex.Row className={` items-center justify-between ${className ?? ''}`}>{children}</UIFlex.Row>
 );
-Row.BaseLine = ({ children, className }: UIType) => (
+Row.BaseLine = ({ children, className }: UIProps) => (
   <UIFlex.Row className={` items-center justify-baseline ${className ?? ''}`}>
     {children}
   </UIFlex.Row>

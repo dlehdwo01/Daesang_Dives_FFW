@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export type UIType = {
+export type UIProps = {
   className?: string;
   children: ReactNode;
 };
