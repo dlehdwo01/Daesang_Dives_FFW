@@ -17,11 +17,9 @@ UIAdminLayout.Basic = ({ title, children }: { title: string; children: ReactNode
     <UIFlex.Row className="flex-grow overflow-hidden">
       <UISide.Admin />
       <UIFlex.Column className="p-5 gap-5 flex-grow overflow-hidden">
-        <div>
-          {/* <UIText>관리자</UIText>
+        {/* <UIText>관리자</UIText>
           <br /> */}
-          <UIText.Title className="!text-3xl">{title}</UIText.Title>
-        </div>
+        <UIText.Header className="!text-3xl">{title}</UIText.Header>
         {children}
       </UIFlex.Column>
     </UIFlex.Row>

@@ -57,6 +57,18 @@ UISide.Admin = () => {
       label: '관리자 카테고리5',
       url: '/admin',
     },
+    {
+      label: '관리자 카테고리5',
+      url: '/admin',
+    },
+    {
+      label: '관리자 카테고리5',
+      url: '/admin',
+    },
+    {
+      label: '관리자 카테고리5',
+      url: '/admin',
+    },
   ];
   return (
     <UISide>

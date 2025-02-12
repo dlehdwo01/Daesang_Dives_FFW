@@ -92,6 +92,7 @@ const Home = () => {
               confirm.open({
                 title: '알림',
                 message: '아이디 또는 비밀번호가 일치하지 않습니다',
+                // cancelText: 'asd',
                 onConfirm: () => {
                   console.log('asdf');
                 },
