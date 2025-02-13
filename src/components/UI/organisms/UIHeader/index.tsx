@@ -42,8 +42,8 @@ const HeaderUl = () => {
   ];
   return (
     <ul className="list-none flex gap-x-5 items-center ">
-      {category.map((item) => (
-        <HeaderLi label={item.label} url={item.url} />
+      {category.map((item, index) => (
+        <HeaderLi label={item.label} url={item.url} key={index} />
       ))}
     </ul>
   );

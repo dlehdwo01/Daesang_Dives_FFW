@@ -36,7 +36,7 @@ const Admin = () => {
             console.log('자세히보기 클릭');
           }}
         ></UIChart>
-        <UIChart
+        {/* <UIChart
           title="asdf"
           datasets={data}
           labels={['1', '2', '3', '4', '5']}
@@ -59,7 +59,7 @@ const Admin = () => {
           onDetailClick={() => {
             console.log('자세히보기 클릭');
           }}
-        ></UIChart>
+        ></UIChart> */}
       </UIGrid>
     </UIAdminLayout.Basic>
   );

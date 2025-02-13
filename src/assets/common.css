@@ -15,3 +15,26 @@
 .animate-bottom-bounce {
   animation: bottomBounce 1s infinite ease-in-out;
 }
+
+/* 전체 스크롤바 스타일 */
+::-webkit-scrollbar {
+  width: 4px; /* 세로 스크롤바 너비 */
+  height: 8px; /* 가로 스크롤바 높이 */
+}
+
+/* 스크롤바 트랙 (스크롤바가 움직이는 배경) */
+::-webkit-scrollbar-track {
+  background: none; /* 연한 회색 */
+  border-radius: 4px;
+}
+
+/* 스크롤바 핸들 (사용자가 움직이는 부분) */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2); /* 어두운 회색 */
+  border-radius: 4px;
+}
+
+/* 스크롤바 핸들에 마우스 올릴 때 */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
