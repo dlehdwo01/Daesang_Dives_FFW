@@ -10,6 +10,7 @@ import { UIText } from '../components/UI/atoms/UIText';
 import { UIInput } from '../components/UI/atoms/UIInput';
 import { UILink } from '../components/UI/atoms/UILink';
 import { UIButton } from '../components/UI/atoms/UIButton';
+import { ChangePwdModal } from '@/components/ChangePwdModal';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +22,7 @@ const Login = () => {
   const password = useRef('');
   // const rememberMe = useRef(false);
   const popup = usePopup();
+
   useEffect(() => {
     popup.open();
     setTimeout(() => {
@@ -34,13 +36,14 @@ const Login = () => {
   return (
     <UILayout.Center>
       <UILoading isOpen={popup.isOpen} />
+
       <UIFlex.Column>
         <UILogo />
         <UICard className="space-y-6 mt-8">
           <UIText>사원번호</UIText>
-          <UIInput ref={id} />
+          <UIInput ref={id} placeholder="사원번호를 입력해주세요." />
           <UIText>비밀번호</UIText>
-          <UIInput ref={password} />
+          <UIInput ref={password} type="password" placeholder="비밀번호를 입력해주세요." />
           <UIFlex.Row.Between>
             <UIFlex.Row.Center>
               <input

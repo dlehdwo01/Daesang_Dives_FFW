@@ -5,11 +5,13 @@ import { UIFlex } from '../../components/UI/atoms/UIFlex';
 import { UIButton } from '../../components/UI/atoms/UIButton';
 import { UIChart } from '../../components/UI/organisms/UIChart';
 import { ChangePwdModal } from '../../components/ChangePwdModal';
+import { usePopup } from '@/hooks/usePopup';
 
 const Home = () => {
   const navigator = useNavigate();
   const confirm = useConfirmStore();
   const { test } = callTest();
+  const changePwdModal = usePopup();
   {
     /*
   // 차트 데이터
@@ -112,11 +114,14 @@ const Home = () => {
           >
             api 연결
           </UIButton>
+          <UIButton onClick={changePwdModal.open}>비밀번호 변경</UIButton>
+          <ChangePwdModal isOpen={changePwdModal.isOpen} close={changePwdModal.close} />
         </div>
       </UIFlex.Row.BaseLine>
+
       <div className="p-5 overflow-y-auto">
         <div className="grid grid-cols-3 gap-4">
-          {/* 컴포넌트 차트 */}
+          {/*  차트 컴포넌트 */}
           {chartConfigs.map((config, index) => (
             <UIChart
               key={index}
