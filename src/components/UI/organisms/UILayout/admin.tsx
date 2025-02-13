@@ -1,5 +1,5 @@
 import { UIFlex } from '@/components/UI/atoms/UIFlex';
-import { ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 import { UILayout } from '.';
 import { UIText } from '../../atoms/UIText';
 import { SideCategoryItem } from './side';
@@ -34,7 +34,15 @@ UIAdminLayout.Basic = ({
         {/* <UIText>관리자</UIText>
           <br /> */}
         <UIText.Header className="!text-3xl">{title}</UIText.Header>
-        {message && <UIText>{message}</UIText>}
+        <UIText>
+          {message &&
+            message.split(/<br\s*\/?>/i).map((line, index) => (
+              <>
+                {line}
+                {index < message.split(/<br\s*\/?>/i).length - 1 && <br />}
+              </>
+            ))}
+        </UIText>
         {children}
       </UIFlex.Column>
     </UIFlex.Row>
