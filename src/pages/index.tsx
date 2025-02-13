@@ -12,14 +12,9 @@ import { UILoading } from '../components/UI/organisms/UILoading';
 import { usePopup } from '../hooks/usePopup';
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    id: '',
-    password: '',
-    rememberMe: false,
-  });
   const id = useRef('');
   const password = useRef('');
-  // const rememberMe = useRef(false);
+  const rememberMe = useRef<HTMLInputElement>(null);
   const popup = usePopup();
 
   useEffect(() => {
@@ -31,6 +26,7 @@ const Login = () => {
 
   const onLogin = () => {
     console.log('로그인 클릭');
+    console.log(rememberMe.current?.checked);
   };
   return (
     <UILayout.Center>
@@ -45,13 +41,18 @@ const Login = () => {
           <UIInput ref={password} type="password" placeholder="비밀번호를 입력해주세요." />
           <UIFlex.Row.Between>
             <UIFlex.Row.Center>
+              {/* <UIInput.CheckBox
+                id="asd"
+                name="asd"
+                value="asd"
+                ref={rememberMe}
+                label="Remember me"
+              /> */}
               <input
                 id="remember_me"
                 name="remember_me"
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 disabled:cursor-wait disabled:opacity-50"
-                checked={formData.rememberMe}
-                onChange={(e) => setFormData({ ...formData, rememberMe: e.target.checked })}
               />
               <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-700 ">
                 Remember me
