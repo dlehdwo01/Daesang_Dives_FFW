@@ -5,6 +5,7 @@ import { UICard } from '@/components/UI/molecules/UICard';
 import { UIChart } from '@/components/UI/organisms/UIChart';
 import { UIAdminLayout } from '@/components/UI/organisms/UILayout/admin';
 import { UILayout } from '@/components/UI/organisms/UILayout';
+import { UIFlex } from '@/components/UI/atoms/UIFlex';
 
 const Admin = () => {
   const searchVal = useRef(''); // 검색어
@@ -26,17 +27,9 @@ const Admin = () => {
     },
   ];
   return (
-    <UIAdminLayout.Basic title={'관리자 홈'}>
-      <UIGrid className="grid-cols-4 gap-2 overflow-y-auto flex-grow p-2">
+    <UIAdminLayout.Basic title={'관리자 홈'} message="관리자 홈입니다">
+      <UIFlex.Row className="flex-wrap gap-5">
         <UIChart
-          title="asdf"
-          datasets={data}
-          labels={['1', '2', '3', '4', '5']}
-          onDetailClick={() => {
-            console.log('자세히보기 클릭');
-          }}
-        ></UIChart>
-        {/* <UIChart
           title="asdf"
           datasets={data}
           labels={['1', '2', '3', '4', '5']}
@@ -59,8 +52,16 @@ const Admin = () => {
           onDetailClick={() => {
             console.log('자세히보기 클릭');
           }}
-        ></UIChart> */}
-      </UIGrid>
+        ></UIChart>
+        <UIChart
+          title="asdf"
+          datasets={data}
+          labels={['1', '2', '3', '4', '5']}
+          onDetailClick={() => {
+            console.log('자세히보기 클릭');
+          }}
+        ></UIChart>
+      </UIFlex.Row>
     </UIAdminLayout.Basic>
   );
 };

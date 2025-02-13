@@ -24,9 +24,16 @@ export const UIHeader = () => {
             </Link>
             <HeaderUl />
           </UIFlex.Row>
-          <div className="mr-5">
-            <UIButton onClick={logout}>로그아웃</UIButton>
-          </div>
+          <UIFlex.Row.BaseLine className="mr-5 gap-10">
+            <UIFlex.Column>
+              <UIText>사번 90191234</UIText>
+              <UIText>무슨무슨팀</UIText>
+              <UIText>유엔아이컴퍼니</UIText>
+            </UIFlex.Column>
+            <div>
+              <UIButton onClick={logout}>로그아웃</UIButton>
+            </div>
+          </UIFlex.Row.BaseLine>
         </UIFlex.Row.Between>
       )}
     </>
