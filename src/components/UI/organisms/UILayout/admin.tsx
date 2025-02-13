@@ -1,7 +1,9 @@
-import { ReactNode } from 'react';
 import { UIFlex } from '@/components/UI/atoms/UIFlex';
-import { UISide } from '../UISide';
+import { ReactNode } from 'react';
+import { UILayout } from '.';
 import { UIText } from '../../atoms/UIText';
+import { SideCategoryItem } from './side';
+import Scrollbar from 'react-scrollbars-custom';
 
 export const UIAdminLayout = () => {
   return (
@@ -23,7 +25,12 @@ UIAdminLayout.Basic = ({
 }) => {
   return (
     <UIFlex.Row className="flex-grow overflow-hidden">
-      <UISide.Admin />
+      <UILayout.Side>
+        {adminCategory.map((item, index) => (
+          <SideCategoryItem key={index} item={item} />
+        ))}
+      </UILayout.Side>
+
       <UIFlex.Column className="p-5 gap-5 flex-grow overflow-hidden">
         {/* <UIText>관리자</UIText>
           <br /> */}
@@ -34,3 +41,54 @@ UIAdminLayout.Basic = ({
     </UIFlex.Row>
   );
 };
+
+export const adminCategory = [
+  {
+    label: '관리자 홈',
+    url: '/admin',
+  },
+  {
+    label: '영업실적 등록',
+    url: '/admin/sales/insert',
+  },
+  {
+    label: '영업실적 조회',
+    url: '/admin/sales/result',
+  },
+  {
+    label: '관리자 카테고리3',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리4',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+];
