@@ -29,38 +29,38 @@ const Admin = () => {
   return (
     <UIAdminLayout.Basic title={'관리자 홈'} message="관리자 홈입니다">
       <UIFlex.Row className="flex-wrap gap-5">
-        <UIChart
+        <UIChart.Bar
           title="asdf"
           datasets={data}
           labels={['1', '2', '3', '4', '5']}
           onDetailClick={() => {
             console.log('자세히보기 클릭');
           }}
-        ></UIChart>
-        <UIChart
+        ></UIChart.Bar>
+        <UIChart.Bar
           title="asdf"
           datasets={data}
           labels={['1', '2', '3', '4', '5']}
           onDetailClick={() => {
             console.log('자세히보기 클릭');
           }}
-        ></UIChart>
-        <UIChart
+        ></UIChart.Bar>
+        <UIChart.Bar
           title="asdf"
           datasets={data}
           labels={['1', '2', '3', '4', '5']}
           onDetailClick={() => {
             console.log('자세히보기 클릭');
           }}
-        ></UIChart>
-        <UIChart
+        ></UIChart.Bar>
+        <UIChart.Bar
           title="asdf"
           datasets={data}
           labels={['1', '2', '3', '4', '5']}
           onDetailClick={() => {
             console.log('자세히보기 클릭');
           }}
-        ></UIChart>
+        ></UIChart.Bar>
       </UIFlex.Row>
     </UIAdminLayout.Basic>
   );

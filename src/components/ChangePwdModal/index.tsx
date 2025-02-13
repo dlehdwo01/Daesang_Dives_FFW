@@ -13,11 +13,11 @@ export const ChangePwdModal = ({ isOpen, close }: { isOpen: boolean; close: () =
   return (
     <UIModal isOpen={isOpen}>
       <UICard
-        className="space-y-6 mt-8 min-w-[400px]"
+        className="space-y-6 mt-8 min-w-[400px] "
         title="비밀번호 변경"
         message="최초 로그인시 비밀번호 변경이 필요합니다"
       >
-        <UIText.Title>현재 비밀번호</UIText.Title>
+        <UIText.Title className="mt-2">현재 비밀번호</UIText.Title>
         <UIInput
           ref={nowpwd}
           type="password"

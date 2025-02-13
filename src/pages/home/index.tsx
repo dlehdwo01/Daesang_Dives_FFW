@@ -73,12 +73,14 @@ const Home = () => {
         {
           label: '테스트1',
           data: [100, 120, 115, 134, 168, 180],
-          backgroundColor: 'rgba(9999, 99, 00, 8)',
-        },
-        {
-          label: '테스트2',
-          data: [80, 100, 105, 140, 150, 170],
-          backgroundColor: 'rgba(75, 192, 192, 0.5)',
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)',
+            'rgba(75, 192, 192, 0.5)',
+            'rgba(153, 102, 255, 0.5)',
+            'rgba(255, 159, 64, 0.5)',
+          ],
         },
       ],
     },
@@ -123,7 +125,7 @@ const Home = () => {
         <div className="grid grid-cols-3 gap-4">
           {/*  차트 컴포넌트 */}
           {chartConfigs.map((config, index) => (
-            <UIChart
+            <UIChart.Doughnut
               key={index}
               {...config}
               onDetailClick={() => {
