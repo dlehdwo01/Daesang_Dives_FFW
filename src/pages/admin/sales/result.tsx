@@ -5,7 +5,14 @@ import { UIFlex } from '@/components/UI/atoms/UIFlex';
 import { UIAdminLayout } from '@/components/UI/organisms/UILayout/admin';
 import { UISearchBar } from '@/components/UI/molecules/UISearchBar';
 import { UIButton } from '@/components/UI/atoms/UIButton';
-import { UITable } from '@/components/UI/molecules/UITable/UITable';
+import {
+  UITable,
+  UITableBody,
+  UITableHead,
+  UITd,
+  UITh,
+  UITr,
+} from '@/components/UI/molecules/UITable/UITable';
 import { UILink } from '@/components/UI/atoms/UILink';
 
 const SalesResult = () => {
@@ -43,35 +50,30 @@ const SalesResult = () => {
         </UIFlex.Row.Between>
         <UIFlex.Column className="overflow-hidden p-1">
           {/* 테이블은 엑셀파일 확인 이후 dataset 수정 예정  */}
-          <UITable
-            thead={['컬럼1', '컬럼1', '컬럼1', '컬럼1', '컬럼1', '컬럼1', '컬럼1', '컬럼1']}
-            tbody={[
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-              ['내용1', '내용2', '내용3', '내용1', '내용2', '내용3', '컬럼1', '컬럼1'],
-            ]}
-          />
+          <UITable>
+            <UITableHead>
+              <UITr>
+                <UITh>d</UITh>
+                <UITh>d</UITh>
+                <UITh>d</UITh>
+                <UITh>d</UITh>
+                <UITh>d</UITh>
+                <UITh>{''}</UITh>
+              </UITr>
+            </UITableHead>
+            <UITableBody>
+              <UITr>
+                <UITd>aa</UITd>
+                <UITd>aa</UITd>
+                <UITd>aa</UITd>
+                <UITd>aa</UITd>
+                <UITd>aa</UITd>
+                <UITd>
+                  <input type="checkbox" />
+                </UITd>
+              </UITr>
+            </UITableBody>
+          </UITable>
           {/* paging */}
           <UIFlex.Row.Center className="gap-2 mt-3 font-bold text-zinc-400">
             <UILink to={'/admin'}>

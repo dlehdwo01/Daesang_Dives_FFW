@@ -29,7 +29,9 @@ UILayout.Center = ({ children, className }: UILayoutProps) => {
 
 UILayout.Side = ({ children, className }: UILayoutProps) => {
   return (
-    <UIFlex.Column className={`w-2xs border-r border-zinc-300 gap-1 overflow-y-auto ${className}`}>
+    <UIFlex.Column
+      className={`min-w-3xs w-3xs border-r border-zinc-300 gap-1 overflow-y-auto ${className}`}
+    >
       {children}
     </UIFlex.Column>
   );

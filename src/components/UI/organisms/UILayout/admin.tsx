@@ -3,7 +3,6 @@ import { ReactNode } from 'react';
 import { UILayout } from '.';
 import { UIText } from '../../atoms/UIText';
 import { SideCategoryItem } from './side';
-import Scrollbar from 'react-scrollbars-custom';
 
 export const UIAdminLayout = () => {
   return (
@@ -56,8 +55,8 @@ export const adminCategory = [
     url: '/admin/sales/result',
   },
   {
-    label: '관리자 카테고리3',
-    url: '/admin',
+    label: '유저관리',
+    url: '/admin/user',
   },
   {
     label: '관리자 카테고리4',
