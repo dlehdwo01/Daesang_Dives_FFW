@@ -1,4 +1,4 @@
-import { RefObject, useState } from 'react';
+import { RefObject, useEffect, useState } from 'react';
 
 export const UIInput = ({
   ref,
@@ -24,46 +24,11 @@ export const UIInput = ({
   );
 };
 
-UIInput.CheckBox = ({
-  ref,
-  label,
-  id,
-  name,
-  value,
-}: {
-  ref: RefObject<HTMLInputElement | null>;
-  label?: string;
-  id: string;
-  name: string;
-  value: string;
-}) => {
-  const [check, setCheck] = useState(ref?.current?.checked ?? false);
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCheck(e.target.checked);
-    if (ref && ref.current && check) {
-      ref.current.checked = check;
-    }
-  };
+UIInput.CheckBox = ({}) => {
   return (
-    <>
-      <input
-        ref={ref}
-        id={id}
-        name={name}
-        value={value}
-        type="checkbox"
-        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 disabled:cursor-wait disabled:opacity-50"
-        checked={check}
-        onChange={(e) => {
-          onChange(e);
-        }}
-      />
-      {label && (
-        <label htmlFor={id} className="ml-2 block text-sm text-gray-700 ">
-          {label}
-        </label>
-      )}
-    </>
+    <input
+      type="checkbox"
+      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 disabled:cursor-wait disabled:opacity-50"
+    />
   );
 };

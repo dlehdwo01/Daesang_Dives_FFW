@@ -1,5 +1,5 @@
 import { UIFlex } from '@/components/UI/atoms/UIFlex';
-import { Fragment, ReactNode } from 'react';
+import React, { Fragment, ReactNode } from 'react';
 import { UILayout } from '.';
 import { UIText } from '../../atoms/UIText';
 import { SideCategoryItem } from './side';
@@ -37,10 +37,10 @@ UIAdminLayout.Basic = ({
         <UIText>
           {message &&
             message.split(/<br\s*\/?>/i).map((line, index) => (
-              <>
+              <Fragment key={index}>
                 {line}
                 {index < message.split(/<br\s*\/?>/i).length - 1 && <br />}
-              </>
+              </Fragment>
             ))}
         </UIText>
         {children}
