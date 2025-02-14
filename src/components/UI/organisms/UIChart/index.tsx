@@ -17,6 +17,7 @@ import { UICard } from '../../molecules/UICard';
 import { UIFlex } from '../../atoms/UIFlex';
 import { UIText } from '../../atoms/UIText';
 import { UIButton } from '../../atoms/UIButton';
+import ChartDataLabels from 'chartjs-plugin-datalabels'; // 추가
 // Chart.js 등록
 ChartJS.register(
   CategoryScale,
@@ -28,9 +29,10 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  //ChartDataLabels, -> 막대에 text 삽입
 );
 
-const ChartComponent = ({
+export const UIChart = ({
   title,
   labels,
   datasets,
@@ -54,6 +56,7 @@ const ChartComponent = ({
         text: title,
       },
     },
+
     scales: {
       y: {
         beginAtZero: true,
@@ -75,15 +78,10 @@ const ChartComponent = ({
       </UIFlex.Row.Between>
 
       <div className="bg-white text-black p-4 mt-3 border-1 border-zinc-300 rounded h-[300px]">
-        <ChartType options={options} data={chartData} />
+        <ChartType type={ChartType} options={options} data={chartData} />
       </div>
 
       <UIFlex.Row.Between className="mt-4">테스트</UIFlex.Row.Between>
     </UICard>
   );
-};
-export const UIChart = {
-  Bar: (props: chartProps) => <ChartComponent {...props} ChartType={Bar} />,
-  Pie: (props: chartProps) => <ChartComponent {...props} ChartType={Pie} />,
-  Doughnut: (props: chartProps) => <ChartComponent {...props} ChartType={Doughnut} />,
 };

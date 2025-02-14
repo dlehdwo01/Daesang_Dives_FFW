@@ -6,6 +6,7 @@ import { UIChart } from '@/components/UI/organisms/UIChart';
 import { UIAdminLayout } from '@/components/UI/organisms/UILayout/admin';
 import { UILayout } from '@/components/UI/organisms/UILayout';
 import { UIFlex } from '@/components/UI/atoms/UIFlex';
+import { Bar } from 'react-chartjs-2';
 
 const Admin = () => {
   const searchVal = useRef(''); // 검색어
@@ -29,38 +30,42 @@ const Admin = () => {
   return (
     <UIAdminLayout.Basic title={'관리자 홈'} message="관리자 홈입니다">
       <UIFlex.Row className="flex-wrap gap-5">
-        <UIChart.Bar
+        <UIChart
+          ChartType={Bar}
           title="asdf"
           datasets={data}
           labels={['1', '2', '3', '4', '5']}
           onDetailClick={() => {
             console.log('자세히보기 클릭');
           }}
-        ></UIChart.Bar>
-        <UIChart.Bar
+        ></UIChart>
+        <UIChart
+          ChartType={Bar}
           title="asdf"
           datasets={data}
           labels={['1', '2', '3', '4', '5']}
           onDetailClick={() => {
             console.log('자세히보기 클릭');
           }}
-        ></UIChart.Bar>
-        <UIChart.Bar
+        ></UIChart>
+        <UIChart
+          ChartType={Bar}
           title="asdf"
           datasets={data}
           labels={['1', '2', '3', '4', '5']}
           onDetailClick={() => {
             console.log('자세히보기 클릭');
           }}
-        ></UIChart.Bar>
-        <UIChart.Bar
+        ></UIChart>
+        <UIChart
+          ChartType={Bar}
           title="asdf"
           datasets={data}
           labels={['1', '2', '3', '4', '5']}
           onDetailClick={() => {
             console.log('자세히보기 클릭');
           }}
-        ></UIChart.Bar>
+        ></UIChart>
       </UIFlex.Row>
     </UIAdminLayout.Basic>
   );
