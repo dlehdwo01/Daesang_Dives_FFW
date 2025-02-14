@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { UILayout } from './components/UI/organisms/UILayout';
 import { UIHeader } from './components/UI/organisms/UIHeader';
 import Security from './components/Security';
+import { UILoading } from './components/UI/organisms/UILoading';
 
 const pageRoutes = import.meta.glob<{ default: React.ComponentType<any> }>(
   './pages/**/[a-z[]*.tsx',
@@ -26,7 +27,7 @@ export const AppRoutes = () => {
                 key={filePath}
                 path={routePath}
                 element={
-                  <React.Suspense fallback={<div>Loading...</div>}>
+                  <React.Suspense fallback={<UILoading isOpen={true} />}>
                     <Security>
                       <PageComponent />
                     </Security>
