@@ -25,6 +25,12 @@ export const UIHeader = () => {
             <HeaderUl />
           </UIFlex.Row>
           <UIFlex.Row.BaseLine className="mr-5 gap-10">
+            <img
+              className="mx-auto h-16 w-auto undefined"
+              alt="대상 로고"
+              src="/profileIcon3.png"
+            />
+
             <UIFlex.Column>
               <UIText>사번 90191234</UIText>
               <UIText>무슨무슨팀</UIText>

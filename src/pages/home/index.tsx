@@ -1,5 +1,5 @@
 import { usePopup } from '@/hooks/usePopup';
-import { Doughnut } from 'react-chartjs-2';
+import { Doughnut, Pie } from 'react-chartjs-2';
 import { callTest } from '../../api/test';
 import { ChangePwdModal } from '../../components/ChangePwdModal';
 import { UIButton } from '../../components/UI/atoms/UIButton';
@@ -33,13 +33,14 @@ const Home = () => {
       label: '테스트1', // 데이터 레이블 (예:'목표 막대기 ','실적 막대기')
       data: [100, 120, 115, 134, 168, 180], // 실제 데이터 배열
       backgroundColor: [
+        //  그래프 색
         'rgba(255, 99, 132, 0.5)',
         'rgba(54, 162, 235, 0.5)',
         'rgba(255, 206, 86, 0.5)',
         'rgba(75, 192, 192, 0.5)',
         'rgba(153, 102, 255, 0.5)',
         'rgba(255, 159, 64, 0.5)',
-      ], //  그래프 색
+      ],
     },
   ];
 
@@ -81,8 +82,8 @@ const Home = () => {
       <div className="p-5 overflow-y-auto">
         <div className="grid grid-cols-3 gap-4">
           <UIChart
-            ChartType={Doughnut}
-            title="asdf"
+            ChartType={Pie}
+            title="Pie 차트"
             datasets={chartDataSet}
             labels={['상품1', '상품2', '상품3', '상품4', '상품5']}
             onDetailClick={() => {

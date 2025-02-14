@@ -10,8 +10,10 @@ import { UICard } from '../components/UI/molecules/UICard';
 import { UILayout } from '../components/UI/organisms/UILayout';
 import { UILoading } from '../components/UI/organisms/UILoading';
 import { usePopup } from '../hooks/usePopup';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const id = useRef('');
   const password = useRef('');
   const rememberMe = useRef<HTMLInputElement>(null);
@@ -27,6 +29,8 @@ const Login = () => {
   const onLogin = () => {
     console.log('로그인 클릭');
     console.log(rememberMe.current?.checked);
+
+    navigate('/home');
   };
   return (
     <UILayout.Center>
@@ -41,13 +45,6 @@ const Login = () => {
           <UIInput ref={password} type="password" placeholder="비밀번호를 입력해주세요." />
           <UIFlex.Row.Between>
             <UIFlex.Row.Center>
-              {/* <UIInput.CheckBox
-                id="asd"
-                name="asd"
-                value="asd"
-                ref={rememberMe}
-                label="Remember me"
-              /> */}
               <input
                 id="remember_me"
                 name="remember_me"
