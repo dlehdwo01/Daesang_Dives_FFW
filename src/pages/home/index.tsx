@@ -1,17 +1,16 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { callTest } from '../../api/test';
-import { useConfirmStore } from '../../components/UI/organisms/UIConfirm/store';
-import { UIFlex } from '../../components/UI/atoms/UIFlex';
-import { UIButton } from '../../components/UI/atoms/UIButton';
-import { UIChart } from '../../components/UI/organisms/UIChart';
-import { ChangePwdModal } from '../../components/ChangePwdModal';
 import { usePopup } from '@/hooks/usePopup';
+import { callTest } from '../../api/test';
+import { ChangePwdModal } from '../../components/ChangePwdModal';
+import { UIButton } from '../../components/UI/atoms/UIButton';
+import { UIFlex } from '../../components/UI/atoms/UIFlex';
+import { UIChart } from '../../components/UI/organisms/UIChart';
+import { useConfirmStore } from '../../components/UI/organisms/UIConfirm/store';
 
 const Home = () => {
-  const navigator = useNavigate();
   const confirm = useConfirmStore();
   const { test } = callTest();
   const changePwdModal = usePopup();
+
   {
     /*
   // 차트 데이터

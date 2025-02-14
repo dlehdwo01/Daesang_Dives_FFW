@@ -1,7 +1,8 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { UILayout } from './components/UI/organisms/UILayout';
 import { UIHeader } from './components/UI/organisms/UIHeader';
+import Security from './components/Security';
 
 const pageRoutes = import.meta.glob<{ default: React.ComponentType<any> }>(
   './pages/**/[a-z[]*.tsx',
@@ -11,7 +12,6 @@ export const AppRoutes = () => {
   return (
     <>
       <UILayout.Page>
-        <UIHeader />
         <Routes>
           {Object.keys(pageRoutes).map((filePath) => {
             const routePath = filePath
@@ -27,7 +27,9 @@ export const AppRoutes = () => {
                 path={routePath}
                 element={
                   <React.Suspense fallback={<div>Loading...</div>}>
-                    <PageComponent />
+                    <Security>
+                      <PageComponent />
+                    </Security>
                   </React.Suspense>
                 }
               />
