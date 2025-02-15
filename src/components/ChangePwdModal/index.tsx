@@ -38,7 +38,7 @@ export const ChangePwdModal = ({ isOpen, close }: { isOpen: boolean; close: () =
           placeholder="비밀번호를 다시 입력해주세요."
         ></UIInput>{' '}
         {/* 변경할 비밀번호 재확인 */}
-        <UIFlex.Row.Between className="mt-6">
+        <UIFlex.Row.Between className="mt-6 gap-1">
           <UIButton.Submit
             onClick={() => {
               console.log(nowpwd.current);

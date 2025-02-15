@@ -29,7 +29,7 @@ const Admin = () => {
   ];
   return (
     <UIAdminLayout.Basic title={'관리자 홈'} message="관리자 홈입니다">
-      <UIFlex.Row className="flex-wrap gap-5">
+      <UIFlex.Row className="flex-wrap gap-5 overflow-y-auto p-2">
         <UIChart
           ChartType={Bar}
           title="asdf"

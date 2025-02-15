@@ -12,14 +12,14 @@ export const UIConfirm = () => {
       <UIModal isOpen={isOpen}>
         <UICard title={data.title} message={data.message}>
           <UIFlex className="gap-5 mt-4">
-            <UIButton
+            <UIButton.Submit
               onClick={() => {
                 close();
                 data.onConfirm?.();
               }}
             >
               {data.confirmText ?? '확인'}
-            </UIButton>
+            </UIButton.Submit>
             {data.cancelText && <UIButton.Red onClick={close}>{data.cancelText}</UIButton.Red>}
           </UIFlex>
         </UICard>

@@ -32,7 +32,7 @@ export const UISearchBar = ({
         )}
       </div>
       <div>
-        <UIButton onClick={onSearch}>{btn ?? '검색'}</UIButton>
+        <UIButton.Submit onClick={onSearch}>{btn ?? '검색'}</UIButton.Submit>
       </div>
     </UIFlex.Row>
   );
