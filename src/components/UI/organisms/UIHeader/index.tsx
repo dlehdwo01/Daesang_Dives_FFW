@@ -31,7 +31,7 @@ export const UIHeader = () => {
               src="/profileIcon3.png"
             />
 
-            <UIFlex.Column>
+            <UIFlex.Column className="whitespace-nowrap">
               <UIText>사번 90191234</UIText>
               <UIText>무슨무슨팀</UIText>
               <UIText>유엔아이컴퍼니</UIText>
@@ -67,7 +67,7 @@ const HeaderLi = ({ label, url }: { label: string; url: string }) => {
 
   return (
     <li
-      className="font-bold text-zinc-800  px-5 items-center flex h-[100%] cursor-pointer"
+      className="font-bold text-zinc-800  px-5 items-center flex h-[100%] cursor-pointer whitespace-nowrap"
       onClick={() => {
         navigator(url);
       }}
