@@ -7,7 +7,7 @@ export type axiosOptions<T, R> = {
   onError?: (err: any) => void;
 };
 
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = '/api';
 
 export const useAxios = () => {
   const send = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
