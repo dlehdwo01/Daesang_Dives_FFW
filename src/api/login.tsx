@@ -17,7 +17,7 @@ export const callLogin = () => {
       { result: string } //outData Type
     >,
   ) => {
-    tr.send('login', axiosOptions);
+    tr.form('login', axiosOptions);
   };
 
   return { getPulicKey, login };
