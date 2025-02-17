@@ -11,6 +11,9 @@ import { UILayout } from '../components/UI/organisms/UILayout';
 import { UILoading } from '../components/UI/organisms/UILoading';
 import { usePopup } from '../hooks/usePopup';
 import { useNavigate } from 'react-router-dom';
+import * as JSEncrypt from 'js-encrypt';
+import { callLogin } from '@/api/login';
+import { useConfirmStore } from '@/components/UI/organisms/UIConfirm/store';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,24 +21,44 @@ const Login = () => {
   const password = useRef('');
   const rememberMe = useRef<HTMLInputElement>(null);
   const popup = usePopup();
+  const publicKey = useRef('');
+  const confirm = useConfirmStore();
+  const { getPulicKey, login } = callLogin();
 
   useEffect(() => {
-    popup.open();
-    setTimeout(() => {
-      popup.close();
-    }, 2000);
+    getPulicKey({
+      inData: {},
+      onSuccess: (data) => {
+        publicKey.current = data.publicKey;
+      },
+    });
   }, []);
+
+  const encryptPassword = (password: string, publicKey: string) => {
+    const encryptor = new JSEncrypt.JSEncrypt();
+    encryptor.setPublicKey(publicKey);
+    return encryptor.encrypt(password) as string;
+  };
 
   const onLogin = () => {
     console.log('로그인 클릭');
-    console.log(rememberMe.current?.checked);
+    console.log(id.current);
+    console.log(password.current);
 
-    navigate('/home');
+    login({
+      inData: { id: id.current, password: encryptPassword(password.current, publicKey.current) },
+      onSuccess: (data) => {
+        if (data.result === 'failed') {
+          confirm.open({ message: '아이디 또는 비밀번호가 일치하지 않습니다.' });
+        } else {
+          navigate('/home');
+        }
+      },
+    });
   };
   return (
     <UILayout.Center>
       <UILoading isOpen={popup.isOpen} />
-
       <UIFlex.Column>
         <UILogo />
         <UICard className="space-y-6 mt-8">
@@ -46,8 +69,6 @@ const Login = () => {
           <UIFlex.Row.Between>
             <UIFlex.Row.Center>
               <input
-                id="remember_me"
-                name="remember_me"
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 disabled:cursor-wait disabled:opacity-50"
               />

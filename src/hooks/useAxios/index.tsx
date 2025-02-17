@@ -7,13 +7,11 @@ export type axiosOptions<T, R> = {
   onError?: (err: any) => void;
 };
 
-const apiUrl = '/api';
-
 export const useAxios = () => {
   const send = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
     const { inData, onError, onSuccess } = axiosOptions;
     const api = axios.create({
-      baseURL: apiUrl,
+      baseURL: '/api',
       withCredentials: true, // 쿠키 포함
     });
 
@@ -60,8 +58,10 @@ export const useAxios = () => {
     try {
       const response = await api.post<R>(url, inData);
       onSuccess?.(response.data);
+      return response;
     } catch (err: any) {
       onError?.(err);
+      return err;
     }
   }, []);
 
