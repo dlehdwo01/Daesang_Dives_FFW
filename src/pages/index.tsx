@@ -17,18 +17,19 @@ import { useConfirmStore } from '@/components/UI/organisms/UIConfirm/store';
 
 const Login = () => {
   const navigate = useNavigate();
-  const id = useRef('');
+  const username = useRef('');
   const password = useRef('');
   const rememberMe = useRef<HTMLInputElement>(null);
   const popup = usePopup();
   const publicKey = useRef('');
   const confirm = useConfirmStore();
-  const { getPulicKey, login } = callLogin();
+  const { getPublicKey, login } = callLogin();
 
   useEffect(() => {
-    getPulicKey({
+    getPublicKey({
       inData: {},
       onSuccess: (data) => {
+        console.log('응답데이터=>', data);
         publicKey.current = data.publicKey;
       },
     });
@@ -42,13 +43,14 @@ const Login = () => {
 
   const onLogin = () => {
     console.log('로그인 클릭');
-    console.log(id.current);
-    console.log(password.current);
 
     login({
-      inData: { id: id.current, password: encryptPassword(password.current, publicKey.current) },
-      onSuccess: (data) => {
-        if (data.result === 'failed') {
+      inData: {
+        username: username.current,
+        password: encryptPassword(password.current, publicKey.current),
+      },
+      onSuccess: (res) => {
+        if (res.result === 'failed') {
           confirm.open({ message: '아이디 또는 비밀번호가 일치하지 않습니다.' });
         } else {
           navigate('/home');
@@ -63,7 +65,7 @@ const Login = () => {
         <UILogo />
         <UICard className="space-y-6 mt-8">
           <UIText>사원번호</UIText>
-          <UIInput ref={id} placeholder="사원번호를 입력해주세요." />
+          <UIInput ref={username} placeholder="사원번호를 입력해주세요." />
           <UIText>비밀번호</UIText>
           <UIInput ref={password} type="password" placeholder="비밀번호를 입력해주세요." />
           <UIFlex.Row.Between>
