@@ -50,11 +50,12 @@ const Login = () => {
         password: encryptPassword(password.current, publicKey.current),
       },
       onSuccess: (res) => {
-        if (res.result === 'failed') {
-          confirm.open({ message: '아이디 또는 비밀번호가 일치하지 않습니다.' });
-        } else {
-          navigate('/home');
-        }
+        navigate('/home');
+        // if (res.result === 'failed') {
+        //   confirm.open({ message: '아이디 또는 비밀번호가 일치하지 않습니다.' });
+        // } else {
+        //   navigate('/home');
+        // }
       },
     });
   };

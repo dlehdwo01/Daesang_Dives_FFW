@@ -1,3 +1,4 @@
+import { useConfirmStore } from '@/components/UI/organisms/UIConfirm/store';
 import { useUserStore } from '@/stores/userStore';
 import axios, { AxiosError } from 'axios';
 import { useCallback } from 'react';
@@ -20,6 +21,7 @@ export const useAxios = () => {
     baseURL: '/api',
     withCredentials: true, // 쿠키 포함
   });
+  const comfirm = useConfirmStore();
 
   //* ==================== api intercepror 설정====================
   // Request Interceptor
@@ -63,14 +65,11 @@ export const useAxios = () => {
     const { inData, onError, onSuccess } = axiosOptions;
     try {
       const response = await api.post<R>(url, inData);
+      console.log('asda');
+      console.log(response.data);
       onSuccess?.(response.data);
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        const axiosError = err as AxiosError;
-        const error = axiosError.response?.data as errorType;
-        onError?.(error);
-        console.error('❌ 에러 : ', error);
-      }
+      defaultErrorFunction(err, onError);
     }
   }, []);
 
@@ -84,11 +83,23 @@ export const useAxios = () => {
       });
       onSuccess?.(response.data);
       return response;
-    } catch (err: any) {
-      onError?.(err);
-      return err;
+    } catch (err: unknown) {
+      defaultErrorFunction(err, onError);
     }
   }, []);
+
+  const defaultErrorFunction = (err: unknown, onError?: (err: unknown) => void) => {
+    if (axios.isAxiosError(err)) {
+      const axiosError = err as AxiosError;
+      const error = axiosError.response?.data as errorType;
+      onError?.(error);
+      comfirm.open({
+        title: '안내',
+        message: error.message,
+      });
+      console.error('❌ 에러 : ', error);
+    }
+  };
 
   return { send, form };
 };
