@@ -10,7 +10,7 @@ export const UIConfirm = () => {
   return (
     <>
       <UIModal isOpen={isOpen}>
-        <UICard title={data.title} message={data.message}>
+        <UICard title={data.title} message={data.message} className="min-w-2xs">
           <UIFlex className="gap-5 mt-4">
             <UIButton.Submit
               onClick={() => {

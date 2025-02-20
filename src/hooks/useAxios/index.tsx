@@ -1,6 +1,7 @@
+import { useConfirmStore } from '@/components/UI/organisms/UIConfirm/store';
+import { useUserStore } from '@/stores/userStore';
 import axios, { AxiosError } from 'axios';
 import { useCallback } from 'react';
-import { ErrorResponse } from 'react-router-dom';
 
 type errorType = {
   code: string;
@@ -20,19 +21,18 @@ export const useAxios = () => {
     baseURL: '/api',
     withCredentials: true, // 쿠키 포함
   });
+  const comfirm = useConfirmStore();
 
   //* ==================== api intercepror 설정====================
-  // 매요청시마다 토큰 포함
-  // api.interceptors.request.use(
-  //   (config) => {
-  //     const token = localStorage.getItem('access_token'); // 혹은 sessionStorage
-  //     if (token) {
-  //       config.headers.Authorization = `Bearer ${token}`;
-  //     }
-  //     return config;
-  //   },
-  //   (error) => Promise.reject(error),
-  // );
+  // Request Interceptor
+  api.interceptors.request.use(
+    (config) => {
+      const userStore = useUserStore.getState();
+      config.headers.Accessed_URL = userStore.url;
+      return config;
+    },
+    (error) => Promise.reject(error),
+  );
 
   // 응답데이터 내 토큰 만료시
   // api.interceptors.response.use(
@@ -65,14 +65,11 @@ export const useAxios = () => {
     const { inData, onError, onSuccess } = axiosOptions;
     try {
       const response = await api.post<R>(url, inData);
+      console.log('asda');
+      console.log(response.data);
       onSuccess?.(response.data);
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        const axiosError = err as AxiosError;
-        const error = axiosError.response?.data as errorType;
-        onError?.(error);
-        console.error('❌ 에러 : ', error);
-      }
+      defaultErrorFunction(err, onError);
     }
   }, []);
 
@@ -86,11 +83,23 @@ export const useAxios = () => {
       });
       onSuccess?.(response.data);
       return response;
-    } catch (err: any) {
-      onError?.(err);
-      return err;
+    } catch (err: unknown) {
+      defaultErrorFunction(err, onError);
     }
   }, []);
+
+  const defaultErrorFunction = (err: unknown, onError?: (err: unknown) => void) => {
+    if (axios.isAxiosError(err)) {
+      const axiosError = err as AxiosError;
+      const error = axiosError.response?.data as errorType;
+      onError?.(error);
+      comfirm.open({
+        title: '안내',
+        message: error.message,
+      });
+      console.error('❌ 에러 : ', error);
+    }
+  };
 
   return { send, form };
 };
