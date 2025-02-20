@@ -1,6 +1,6 @@
+import { useUserStore } from '@/stores/userStore';
 import axios, { AxiosError } from 'axios';
 import { useCallback } from 'react';
-import { ErrorResponse } from 'react-router-dom';
 
 type errorType = {
   code: string;
@@ -22,17 +22,15 @@ export const useAxios = () => {
   });
 
   //* ==================== api intercepror 설정====================
-  // 매요청시마다 토큰 포함
-  // api.interceptors.request.use(
-  //   (config) => {
-  //     const token = localStorage.getItem('access_token'); // 혹은 sessionStorage
-  //     if (token) {
-  //       config.headers.Authorization = `Bearer ${token}`;
-  //     }
-  //     return config;
-  //   },
-  //   (error) => Promise.reject(error),
-  // );
+  // Request Interceptor
+  api.interceptors.request.use(
+    (config) => {
+      const userStore = useUserStore.getState();
+      config.headers.Accessed_URL = userStore.url;
+      return config;
+    },
+    (error) => Promise.reject(error),
+  );
 
   // 응답데이터 내 토큰 만료시
   // api.interceptors.response.use(
