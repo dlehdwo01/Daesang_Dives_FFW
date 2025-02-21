@@ -7,18 +7,14 @@ export const callLogin = () => {
       {}, //inData Type
       { publicKey: string } //outData Type
     >,
-  ) => {
-    tr.send('publicKey', axiosOptions);
-  };
+  ) => tr.post('publicKey', axiosOptions);
 
   const login = (
     axiosOptions: axiosOptions<
       { username: string; password: string }, //inData Type
       { result: string } //outData Type
     >,
-  ) => {
-    tr.form('login', axiosOptions);
-  };
+  ) => tr.form('login', axiosOptions);
 
   return { getPublicKey, login };
 };
