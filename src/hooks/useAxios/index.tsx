@@ -10,13 +10,10 @@ type errorType = {
   timestamp: string;
 };
 
-export type axiosResultOptions<R> = {
+export type axiosOptions<T, R> = {
+  inData: T;
   onSuccess?: (outData: R) => void;
   onError?: (err: any) => void;
-};
-
-export type axiosOptions<T, R> = axiosResultOptions<R> & {
-  inData: T;
 };
 
 export const useAxios = () => {
@@ -106,10 +103,12 @@ export const useAxios = () => {
     }
   }, []);
 
-  const del2te = useCallback(async <R,>(url: string, axiosResultOptions: axiosResultOptions<R>) => {
-    const { onError, onSuccess } = axiosResultOptions;
+  const del2te = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
+    const { inData, onError, onSuccess } = axiosOptions;
     try {
-      const response = await api.delete<R>(url);
+      const response = await api.delete<R>(url, {
+        params: inData,
+      });
       onSuccess?.(response.data);
     } catch (err) {
       defaultErrorFunction(err, onError);
