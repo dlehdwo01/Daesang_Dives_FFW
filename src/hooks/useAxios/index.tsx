@@ -10,10 +10,13 @@ type errorType = {
   timestamp: string;
 };
 
-export type axiosOptions<T, R> = {
-  inData: T;
+export type axiosResultOptions<R> = {
   onSuccess?: (outData: R) => void;
   onError?: (err: any) => void;
+};
+
+export type axiosOptions<T, R> = axiosResultOptions<R> & {
+  inData: T;
 };
 
 export const useAxios = () => {
@@ -61,12 +64,52 @@ export const useAxios = () => {
   // );
   //*==============================================================
 
-  const send = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
+  const post = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
     const { inData, onError, onSuccess } = axiosOptions;
     try {
       const response = await api.post<R>(url, inData);
-      console.log('asda');
-      console.log(response.data);
+      onSuccess?.(response.data);
+    } catch (err) {
+      defaultErrorFunction(err, onError);
+    }
+  }, []);
+
+  const get = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
+    const { inData, onError, onSuccess } = axiosOptions;
+    try {
+      const response = await api.get<R>(url, {
+        params: inData,
+      });
+      onSuccess?.(response.data);
+    } catch (err) {
+      defaultErrorFunction(err, onError);
+    }
+  }, []);
+
+  const put = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
+    const { inData, onError, onSuccess } = axiosOptions;
+    try {
+      const response = await api.put<R>(url, inData);
+      onSuccess?.(response.data);
+    } catch (err) {
+      defaultErrorFunction(err, onError);
+    }
+  }, []);
+
+  const patch = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
+    const { inData, onError, onSuccess } = axiosOptions;
+    try {
+      const response = await api.patch<R>(url, inData);
+      onSuccess?.(response.data);
+    } catch (err) {
+      defaultErrorFunction(err, onError);
+    }
+  }, []);
+
+  const del2te = useCallback(async <R,>(url: string, axiosResultOptions: axiosResultOptions<R>) => {
+    const { onError, onSuccess } = axiosResultOptions;
+    try {
+      const response = await api.delete<R>(url);
       onSuccess?.(response.data);
     } catch (err) {
       defaultErrorFunction(err, onError);
@@ -91,6 +134,15 @@ export const useAxios = () => {
   const defaultErrorFunction = (err: unknown, onError?: (err: unknown) => void) => {
     if (axios.isAxiosError(err)) {
       const axiosError = err as AxiosError;
+      // 서버 에러 공통 오류 처리
+      if (err.status === 500) {
+        comfirm.open({
+          title: '안내',
+          message:
+            '요청을 처리하는 중에 오류가 발생했습니다. 문제가 지속되면 고객 지원팀에 문의해 주세요.',
+        });
+        return;
+      }
       const error = axiosError.response?.data as errorType;
       onError?.(error);
       comfirm.open({
@@ -101,5 +153,5 @@ export const useAxios = () => {
     }
   };
 
-  return { send, form };
+  return { post, form, get, del2te, patch, put };
 };
