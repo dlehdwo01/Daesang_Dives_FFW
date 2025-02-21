@@ -1,4 +1,4 @@
-import { axiosOptions, axiosResultOptions, useAxios } from '../hooks/useAxios';
+import { axiosOptions, useAxios } from '../hooks/useAxios';
 
 export const callTest = () => {
   const tr = useAxios();
@@ -40,11 +40,13 @@ export const callTest = () => {
     >,
   ) => tr.put(`admin/test/${id}`, axiosOptions);
 
-  //* delete는 inData를 받지 않습니다.
   const deleteTest = (
     id: string,
-    axiosResultOptions: axiosResultOptions<{}>, //outData Type
-  ) => tr.del2te(`admin/test${id}`, axiosResultOptions);
+    axiosOptions: axiosOptions<
+      {}, //inData Type
+      {} //outData Type
+    >,
+  ) => tr.del2te(`admin/test/${id}`, axiosOptions);
 
   return { test };
 };
