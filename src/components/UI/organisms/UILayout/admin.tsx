@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
 import { UIFlex } from '@/components/UI/atoms/UIFlex';
-import { UISide } from '../UISide';
+import React, { Fragment, ReactNode } from 'react';
+import { UILayout } from '.';
 import { UIText } from '../../atoms/UIText';
+import { SideCategoryItem } from './side';
 
 export const UIAdminLayout = () => {
   return (
@@ -23,14 +24,78 @@ UIAdminLayout.Basic = ({
 }) => {
   return (
     <UIFlex.Row className="flex-grow overflow-hidden">
-      <UISide.Admin />
+      <UILayout.Side>
+        {adminCategory.map((item, index) => (
+          <SideCategoryItem key={index} item={item} />
+        ))}
+      </UILayout.Side>
+
       <UIFlex.Column className="p-5 gap-5 flex-grow overflow-hidden">
         {/* <UIText>관리자</UIText>
           <br /> */}
         <UIText.Header className="!text-3xl">{title}</UIText.Header>
-        {message && <UIText>{message}</UIText>}
+        <UIText>
+          {message &&
+            message.split(/<br\s*\/?>/i).map((line, index) => (
+              <Fragment key={index}>
+                {line}
+                {index < message.split(/<br\s*\/?>/i).length - 1 && <br />}
+              </Fragment>
+            ))}
+        </UIText>
         {children}
       </UIFlex.Column>
     </UIFlex.Row>
   );
 };
+
+export const adminCategory = [
+  {
+    label: '관리자 홈',
+    url: '/admin',
+  },
+  {
+    label: '영업실적 등록',
+    url: '/admin/sales/insert',
+  },
+  {
+    label: '영업실적 조회',
+    url: '/admin/sales/result',
+  },
+  {
+    label: '유저관리',
+    url: '/admin/user',
+  },
+  {
+    label: '관리자 카테고리4',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+  {
+    label: '관리자 카테고리5',
+    url: '/admin',
+  },
+];

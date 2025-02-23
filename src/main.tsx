@@ -6,10 +6,10 @@ import { AppRoutes } from './routes.tsx';
 import { UIConfirm } from './components/UI/organisms/UIConfirm/index.tsx';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <BrowserRouter>
-      <AppRoutes />
-      <UIConfirm />
-    </BrowserRouter>
-  </StrictMode>,
+  // <StrictMode>
+  <BrowserRouter>
+    <AppRoutes />
+    <UIConfirm />
+  </BrowserRouter>,
+  // </StrictMode>,
 );

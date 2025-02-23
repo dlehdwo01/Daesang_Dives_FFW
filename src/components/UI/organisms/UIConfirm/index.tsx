@@ -2,6 +2,7 @@ import { UIButton } from '../../atoms/UIButton';
 import { UIFlex } from '../../atoms/UIFlex';
 import { UIModal } from '../../atoms/UIModal';
 import { UIText } from '../../atoms/UIText';
+import { UICard } from '../../molecules/UICard';
 import { useConfirmStore } from './store';
 
 export const UIConfirm = () => {
@@ -9,21 +10,19 @@ export const UIConfirm = () => {
   return (
     <>
       <UIModal isOpen={isOpen}>
-        <UIFlex.Column className="px-8 py-4 pt-8 gap-3 rounded-3xl shadow shadow-neutral-400">
-          <UIText.Title>{data.title ?? '알림'}</UIText.Title>
-          <UIText className="break-words">{data.message}</UIText>
+        <UICard title={data.title} message={data.message} className="min-w-2xs">
           <UIFlex className="gap-5 mt-4">
-            <UIButton
+            <UIButton.Submit
               onClick={() => {
                 close();
                 data.onConfirm?.();
               }}
             >
               {data.confirmText ?? '확인'}
-            </UIButton>
+            </UIButton.Submit>
             {data.cancelText && <UIButton.Red onClick={close}>{data.cancelText}</UIButton.Red>}
           </UIFlex>
-        </UIFlex.Column>
+        </UICard>
       </UIModal>
     </>
   );

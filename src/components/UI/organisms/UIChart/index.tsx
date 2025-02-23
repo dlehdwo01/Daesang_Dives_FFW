@@ -1,4 +1,4 @@
-import { Bar } from 'react-chartjs-2';
+import { Bar, Doughnut, Pie } from 'react-chartjs-2';
 import { chartProps } from './type';
 // chatjs 사용할때 그래프 표현에 필요한 import 설정 부분
 import {
@@ -17,6 +17,7 @@ import { UICard } from '../../molecules/UICard';
 import { UIFlex } from '../../atoms/UIFlex';
 import { UIText } from '../../atoms/UIText';
 import { UIButton } from '../../atoms/UIButton';
+import ChartDataLabels from 'chartjs-plugin-datalabels'; // 추가
 // Chart.js 등록
 ChartJS.register(
   CategoryScale,
@@ -28,41 +29,43 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  //ChartDataLabels, -> 막대에 text 삽입
 );
 
-//차트 컴포넌트
-export const UIChart = ({ title, labels, datasets, onDetailClick }: chartProps) => {
-  // 차트 데이터 구조화
+export const UIChart = ({
+  title,
+  labels,
+  datasets,
+  onDetailClick,
+  ChartType,
+}: chartProps & { ChartType: any }) => {
   const chartData = {
-    labels, //x 축 레이블
-    datasets, // 데이터 셋
+    labels,
+    datasets,
   };
-  //차트 옵션 설정 (여기서 애니메이션,이벤트헨들링 , 플러그인 등등 설정 가능함 .)
-  const options = {
-    responsive: true, // 반응형 설정
-    maintainAspectRatio: false, // 종비 유지 해제
 
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
-      // 범례 설정
       legend: {
-        position: 'top' as const, // 범례 위치
+        position: 'top' as const,
       },
       title: {
-        display: true, // 제목 표시
-        text: title, // 제목 텍스트
+        display: true,
+        text: title,
       },
     },
-    // 스케일 설정
+
     scales: {
       y: {
-        beginAtZero: true, // y축 0부터 시작
+        beginAtZero: true,
       },
     },
   };
 
   return (
     <UICard className="h-fit">
-      {/* Top */}
       <UIFlex.Row.Between>
         <UIText.Title>{title}</UIText.Title>
         {onDetailClick && (
@@ -74,17 +77,11 @@ export const UIChart = ({ title, labels, datasets, onDetailClick }: chartProps) 
         )}
       </UIFlex.Row.Between>
 
-      {/* Mid */}
       <div className="bg-white text-black p-4 mt-3 border-1 border-zinc-300 rounded h-[300px]">
-        <Bar options={options} data={chartData} />
+        <ChartType type={ChartType} options={options} data={chartData} />
       </div>
 
-      {/* Bottom */}
-      <UIFlex.Row.Between className="mt-4">
-        asd
-        {/* <UIText>목표: {datasets[0].data[5]}건</UIText>
-        <UIText>실적: {datasets[1].data[5]}건</UIText> */}
-      </UIFlex.Row.Between>
+      <UIFlex.Row.Between className="mt-4">테스트</UIFlex.Row.Between>
     </UICard>
   );
 };

@@ -1,35 +1,63 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { usePopup } from '../hooks/usePopup';
-import { UILayout } from '../components/UI/organisms/UILayout';
-import { UILoading } from '../components/UI/organisms/UILoading';
+import { UIButton } from '../components/UI/atoms/UIButton';
 import { UIFlex } from '../components/UI/atoms/UIFlex';
-import { UILogo } from '../components/UI/atoms/UILogo';
-import { UICard } from '../components/UI/molecules/UICard';
-import { UIText } from '../components/UI/atoms/UIText';
 import { UIInput } from '../components/UI/atoms/UIInput';
 import { UILink } from '../components/UI/atoms/UILink';
-import { UIButton } from '../components/UI/atoms/UIButton';
+import { UILogo } from '../components/UI/atoms/UILogo';
+import { UIText } from '../components/UI/atoms/UIText';
+import { UICard } from '../components/UI/molecules/UICard';
+import { UILayout } from '../components/UI/organisms/UILayout';
+import { UILoading } from '../components/UI/organisms/UILoading';
+import { usePopup } from '../hooks/usePopup';
+import { useNavigate } from 'react-router-dom';
+import * as JSEncrypt from 'js-encrypt';
+import { callLogin } from '@/api/login';
+import { useConfirmStore } from '@/components/UI/organisms/UIConfirm/store';
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    id: '',
-    password: '',
-    rememberMe: false,
-  });
-  const id = useRef('');
+  const navigate = useNavigate();
+  const username = useRef('');
   const password = useRef('');
-  // const rememberMe = useRef(false);
+  const rememberMe = useRef<HTMLInputElement>(null);
   const popup = usePopup();
+  const publicKey = useRef('');
+  const confirm = useConfirmStore();
+  const { getPublicKey, login } = callLogin();
+
   useEffect(() => {
-    popup.open();
-    setTimeout(() => {
-      popup.close();
-    }, 2000);
+    getPublicKey({
+      inData: {},
+      onSuccess: (data) => {
+        console.log('응답데이터=>', data);
+        publicKey.current = data.publicKey;
+      },
+    });
   }, []);
+
+  const encryptPassword = (password: string, publicKey: string) => {
+    const encryptor = new JSEncrypt.JSEncrypt();
+    encryptor.setPublicKey(publicKey);
+    return encryptor.encrypt(password) as string;
+  };
 
   const onLogin = () => {
     console.log('로그인 클릭');
+
+    login({
+      inData: {
+        username: username.current,
+        password: encryptPassword(password.current, publicKey.current),
+      },
+      onSuccess: (res) => {
+        navigate('/home');
+        // if (res.result === 'failed') {
+        //   confirm.open({ message: '아이디 또는 비밀번호가 일치하지 않습니다.' });
+        // } else {
+        //   navigate('/home');
+        // }
+      },
+    });
   };
   return (
     <UILayout.Center>
@@ -38,18 +66,14 @@ const Login = () => {
         <UILogo />
         <UICard className="space-y-6 mt-8">
           <UIText>사원번호</UIText>
-          <UIInput ref={id} />
+          <UIInput ref={username} placeholder="사원번호를 입력해주세요." />
           <UIText>비밀번호</UIText>
-          <UIInput ref={password} />
+          <UIInput ref={password} type="password" placeholder="비밀번호를 입력해주세요." />
           <UIFlex.Row.Between>
             <UIFlex.Row.Center>
               <input
-                id="remember_me"
-                name="remember_me"
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 disabled:cursor-wait disabled:opacity-50"
-                checked={formData.rememberMe}
-                onChange={(e) => setFormData({ ...formData, rememberMe: e.target.checked })}
               />
               <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-700 ">
                 Remember me

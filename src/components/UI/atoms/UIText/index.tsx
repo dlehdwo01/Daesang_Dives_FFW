@@ -9,5 +9,5 @@ UIText.Title = ({ children, className }: UIProps) => {
 };
 
 UIText.Header = ({ children, className }: UIProps) => {
-  return <UIText className={`!font-bold !text-2xl ${className ?? ''}`}>{children}</UIText>;
+  return <UIText className={`!font-bold !text-xl ${className ?? ''}`}>{children}</UIText>;
 };
