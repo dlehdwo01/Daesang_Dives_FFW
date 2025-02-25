@@ -1,7 +1,6 @@
 import { UIButton } from '../../atoms/UIButton';
 import { UIFlex } from '../../atoms/UIFlex';
 import { UIModal } from '../../atoms/UIModal';
-import { UIText } from '../../atoms/UIText';
 import { UICard } from '../../molecules/UICard';
 import { useConfirmStore } from './store';
 

@@ -1,5 +1,5 @@
 import { UIFlex } from '@/components/UI/atoms/UIFlex';
-import React, { Fragment, ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 import { UILayout } from '.';
 import { UIText } from '../../atoms/UIText';
 import { SideCategoryItem } from './side';

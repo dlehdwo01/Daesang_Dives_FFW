@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
+import { callLogin } from '@/api/login';
+import * as JSEncrypt from 'js-encrypt';
 import { UIButton } from '../components/UI/atoms/UIButton';
 import { UIFlex } from '../components/UI/atoms/UIFlex';
 import { UIInput } from '../components/UI/atoms/UIInput';
@@ -11,26 +13,23 @@ import { UILayout } from '../components/UI/organisms/UILayout';
 import { UILoading } from '../components/UI/organisms/UILoading';
 import { usePopup } from '../hooks/usePopup';
 import { useNavigate } from 'react-router-dom';
-import * as JSEncrypt from 'js-encrypt';
-import { callLogin } from '@/api/login';
-import { useConfirmStore } from '@/components/UI/organisms/UIConfirm/store';
 
 const Login = () => {
   const navigate = useNavigate();
   const username = useRef('');
   const password = useRef('');
-  const rememberMe = useRef<HTMLInputElement>(null);
+  // const rememberMe = useRef<HTMLInputElement>(null);
   const popup = usePopup();
   const publicKey = useRef('');
-  const confirm = useConfirmStore();
+  // const confirm = useConfirmStore();
   const { getPublicKey, login } = callLogin();
 
   useEffect(() => {
     getPublicKey({
       inData: {},
-      onSuccess: (data) => {
-        console.log('응답데이터=>', data);
-        publicKey.current = data.publicKey;
+      onSuccess: (res) => {
+        console.log('응답데이터=>', res);
+        publicKey.current = res.data.publicKey;
       },
     });
   }, []);
@@ -49,7 +48,7 @@ const Login = () => {
         username: username.current,
         password: encryptPassword(password.current, publicKey.current),
       },
-      onSuccess: (res) => {
+      onSuccess: () => {
         navigate('/home');
         // if (res.result === 'failed') {
         //   confirm.open({ message: '아이디 또는 비밀번호가 일치하지 않습니다.' });

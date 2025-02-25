@@ -1,5 +1,4 @@
-import { FC, JSX, ReactNode } from 'react';
-import { Scrollbar } from 'react-scrollbars-custom';
+import { ReactNode } from 'react';
 import { UIFlex } from '../../atoms/UIFlex';
 
 type UILayoutProps = {

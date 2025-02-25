@@ -1,23 +1,21 @@
-import { Bar, Doughnut, Pie } from 'react-chartjs-2';
 import { chartProps } from './type';
 // chatjs 사용할때 그래프 표현에 필요한 import 설정 부분
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
+  ArcElement,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
   LineElement,
   PointElement,
-  ArcElement,
   Title,
   Tooltip,
-  Legend,
 } from 'chart.js';
-import { UICard } from '../../molecules/UICard';
+import { UIButton } from '../../atoms/UIButton';
 import { UIFlex } from '../../atoms/UIFlex';
 import { UIText } from '../../atoms/UIText';
-import { UIButton } from '../../atoms/UIButton';
-import ChartDataLabels from 'chartjs-plugin-datalabels'; // 추가
+import { UICard } from '../../molecules/UICard';
 // Chart.js 등록
 ChartJS.register(
   CategoryScale,

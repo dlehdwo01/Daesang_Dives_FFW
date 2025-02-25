@@ -1,24 +1,19 @@
-import { useRef } from 'react';
-
-import { UIGrid } from '@/components/UI/atoms/UIGrid';
-import { UICard } from '@/components/UI/molecules/UICard';
+import { UIFlex } from '@/components/UI/atoms/UIFlex';
 import { UIChart } from '@/components/UI/organisms/UIChart';
 import { UIAdminLayout } from '@/components/UI/organisms/UILayout/admin';
-import { UILayout } from '@/components/UI/organisms/UILayout';
-import { UIFlex } from '@/components/UI/atoms/UIFlex';
 import { Bar } from 'react-chartjs-2';
 
 const Admin = () => {
-  const searchVal = useRef(''); // 검색어
+  // const searchVal = useRef(''); // 검색어
 
   // 검색버튼 클릭시
-  const onSearch = () => {};
+  // const onSearch = () => {};
 
   // 수정버튼 클릭시
-  const onEdit = () => {};
+  // const onEdit = () => {};
 
   // 삭제버튼 클릭시
-  const onDelete = () => {};
+  // const onDelete = () => {};
   const data = [
     {
       label: 'asd',
