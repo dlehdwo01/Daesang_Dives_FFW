@@ -1,6 +1,6 @@
 import { useUserStore } from '@/stores/userStore';
 import { ReactNode, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { UIHeader } from '../UI/organisms/UIHeader';
 import { UILayout } from '../UI/organisms/UILayout';
 
@@ -9,7 +9,7 @@ const Security = ({ children }: { children: ReactNode }) => {
   const noRender = ['/']; // 헤더 미출력 주소 입력 (로그인)
   const userStore = useUserStore();
   // const [auth, setAuth] = useState(true);
-  const navigator = useNavigate();
+  // const navigator = useNavigate();
   useEffect(() => {
     userStore.setUrl(path.pathname);
   }, [path]);

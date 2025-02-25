@@ -54,7 +54,7 @@ const User = () => {
       title="유저관리"
       message="유저관리하셈<br />사번 클릭시 수정창 열림<br />비밀번호 초기화시 초기 비밀번호 1234!@#$"
     >
-      <UIButton onClick={() => console.log(checkList)}>체크리스트 확인</UIButton>
+      {/* <UIButton onClick={() => console.log(checkList)}>체크리스트 확인</UIButton> */}
       {/* 회원정보수정창 */}
       <UIModal isOpen={editUser.isOpen}>
         <UICard title="회원정보수정">

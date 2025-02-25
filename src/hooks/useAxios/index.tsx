@@ -7,12 +7,18 @@ type errorType = {
   code: string;
   message: string;
   status: number;
-  timestamp: string;
+};
+
+type responseType<R> = {
+  code: string;
+  message: string;
+  status: number;
+  data: R;
 };
 
 export type axiosOptions<T, R> = {
   inData: T;
-  onSuccess?: (outData: R) => void;
+  onSuccess?: (outData: responseType<R>) => void;
   onError?: (err: any) => void;
 };
 
@@ -22,6 +28,7 @@ export const useAxios = () => {
     withCredentials: true, // 쿠키 포함
   });
   const comfirm = useConfirmStore();
+  // const navigator = useNavigate();
 
   //* ==================== api intercepror 설정====================
   // Request Interceptor
@@ -34,37 +41,47 @@ export const useAxios = () => {
     (error) => Promise.reject(error),
   );
 
-  // 응답데이터 내 토큰 만료시
-  // api.interceptors.response.use(
-  //   (response) => response, // 정상 응답 그대로 반환
-  //   async (error) => {
-  //     const originalRequest = error.config;
-  //     if (error.response?.status === 401 && !originalRequest._retry) {
-  //       try {
-  //         // 401 오류 → 토큰 갱신 요청
-  //         const refreshResponse = await axios.post(
-  //           'refresh토큰으로 새로운 액세스 토큰 발급 api',
-  //           {},
-  //           { withCredentials: true },
-  //         );
-  //         localStorage.setItem('access_token', refreshResponse.data.accessToken);
-  //         originalRequest.headers.Authorization = `Bearer ${refreshResponse.data.accessToken}`;
-  //         return axios(originalRequest);
-  //       } catch (refreshError) {
-  //         console.error('리프레시 토큰 만료됨. 로그아웃 처리.');
-  //         localStorage.removeItem('access_token'); // 토큰 제거
-  //         window.location.href = '/'; // 로그인 페이지로 이동
-  //       }
-  //     }
-  //     return Promise.reject(error);
-  //   },
-  // );
+  //* Response Interceptors
+  api.interceptors.response.use(
+    //* 정상 응답 그대로 반환
+    (response) => {
+      return response;
+    },
+    //* 에러시
+    async (error) => {
+      const originalRequest = error.config;
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError;
+        const response = axiosError.response?.data as errorType;
+
+        //* 액세스 토큰 만료
+        //* 재발급처리 되었으니 기존 api 재호출
+        if (response.code === 'ERROR-005') {
+          console.log('재발급 후 api 재호출!');
+          return axios(originalRequest);
+        }
+        //* 재로그인(리프레쉬토큰 만료)
+        else if (response.code === 'ERROR-004') {
+          comfirm.open({
+            title: '안내',
+            message: response.message,
+            onConfirm() {
+              window.location.href = '/';
+              // navigator('/');
+            },
+          });
+          return;
+        }
+      }
+      return Promise.reject(error);
+    },
+  );
   //*==============================================================
 
   const post = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
     const { inData, onError, onSuccess } = axiosOptions;
     try {
-      const response = await api.post<R>(url, inData);
+      const response = await api.post<responseType<R>>(url, inData);
       onSuccess?.(response.data);
     } catch (err) {
       defaultErrorFunction(err, onError);
@@ -74,7 +91,7 @@ export const useAxios = () => {
   const get = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
     const { inData, onError, onSuccess } = axiosOptions;
     try {
-      const response = await api.get<R>(url, {
+      const response = await api.get<responseType<R>>(url, {
         params: inData,
       });
       onSuccess?.(response.data);
@@ -86,7 +103,7 @@ export const useAxios = () => {
   const put = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
     const { inData, onError, onSuccess } = axiosOptions;
     try {
-      const response = await api.put<R>(url, inData);
+      const response = await api.put<responseType<R>>(url, inData);
       onSuccess?.(response.data);
     } catch (err) {
       defaultErrorFunction(err, onError);
@@ -96,7 +113,7 @@ export const useAxios = () => {
   const patch = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
     const { inData, onError, onSuccess } = axiosOptions;
     try {
-      const response = await api.patch<R>(url, inData);
+      const response = await api.patch<responseType<R>>(url, inData);
       onSuccess?.(response.data);
     } catch (err) {
       defaultErrorFunction(err, onError);
@@ -106,7 +123,7 @@ export const useAxios = () => {
   const del2te = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
     const { inData, onError, onSuccess } = axiosOptions;
     try {
-      const response = await api.delete<R>(url, {
+      const response = await api.delete<responseType<R>>(url, {
         params: inData,
       });
       onSuccess?.(response.data);
@@ -118,7 +135,7 @@ export const useAxios = () => {
   const form = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
     const { inData, onError, onSuccess } = axiosOptions;
     try {
-      const response = await api.post<R>(url, inData, {
+      const response = await api.post<responseType<R>>(url, inData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },

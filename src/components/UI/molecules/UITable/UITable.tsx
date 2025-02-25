@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react';
-import { UICard } from '../UICard';
+import { ReactNode } from 'react';
 import { UIProps } from '../../UIProps';
+import { UICard } from '../UICard';
 
 export const UITable = ({ children }: { children: ReactNode }) => {
   return (

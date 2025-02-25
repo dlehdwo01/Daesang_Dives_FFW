@@ -9,44 +9,44 @@ export const callTest = () => {
     >,
   ) => tr.post('admin/test', axiosOptions);
 
-  const getTest = (
-    axiosOptions: axiosOptions<
-      {}, //inData Type
-      {} //outData Type
-    >,
-  ) => tr.get('admin/test', axiosOptions);
+  // const getTest = (
+  //   axiosOptions: axiosOptions<
+  //     {}, //params Type
+  //     {} //outData Type
+  //   >,
+  // ) => tr.get('admin/test', axiosOptions);
 
-  const getTest2 = (
-    id: string,
-    axiosOptions: axiosOptions<
-      {}, //inData Type
-      {} //outData Type
-    >,
-  ) => tr.get(`admin/test/${id}`, axiosOptions);
+  // const getTest2 = (
+  //   id: string,
+  //   axiosOptions: axiosOptions<
+  //     {}, //inData Type
+  //     {} //outData Type
+  //   >,
+  // ) => tr.get(`admin/test/${id}`, axiosOptions);
 
-  const putTest = (
-    id: string,
-    axiosOptions: axiosOptions<
-      {}, //inData Type
-      {} //outData Type
-    >,
-  ) => tr.put(`admin/test/${id}`, axiosOptions);
+  // const putTest = (
+  //   id: string,
+  //   axiosOptions: axiosOptions<
+  //     {}, //inData Type
+  //     {} //outData Type
+  //   >,
+  // ) => tr.put(`admin/test/${id}`, axiosOptions);
 
-  const patchTest = (
-    id: string,
-    axiosOptions: axiosOptions<
-      {}, //inData Type
-      {} //outData Type
-    >,
-  ) => tr.put(`admin/test/${id}`, axiosOptions);
+  // const patchTest = (
+  //   id: string,
+  //   axiosOptions: axiosOptions<
+  //     {}, //inData Type
+  //     {} //outData Type
+  //   >,
+  // ) => tr.put(`admin/test/${id}`, axiosOptions);
 
-  const deleteTest = (
-    id: string,
-    axiosOptions: axiosOptions<
-      {}, //inData Type
-      {} //outData Type
-    >,
-  ) => tr.del2te(`admin/test/${id}`, axiosOptions);
+  // const deleteTest = (
+  //   id: string,
+  //   axiosOptions: axiosOptions<
+  //     {}, //params Type
+  //     {} //outData Type
+  //   >,
+  // ) => tr.del2te(`admin/test/${id}`, axiosOptions);
 
   return { test };
 };
