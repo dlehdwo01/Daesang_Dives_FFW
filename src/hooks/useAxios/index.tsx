@@ -41,42 +41,47 @@ export const useAxios = () => {
     (error) => Promise.reject(error),
   );
 
-  //* Response Interceptors
+  // 응답데이터 내 토큰 만료시
   api.interceptors.response.use(
-    //* 정상 응답 그대로 반환
-    (response) => {
-      return response;
-    },
-    //* 에러시
-    async (error) => {
-      const originalRequest = error.config;
-      if (axios.isAxiosError(error)) {
-        const axiosError = error as AxiosError;
-        const response = axiosError.response?.data as errorType;
+    (response) => response, // 정상 응답 그대로 반환
+    async (err) => {
+      if (axios.isAxiosError(err)) {
+        const originalRequest = err.config;
 
-        //* 액세스 토큰 만료
-        //* 재발급처리 되었으니 기존 api 재호출
-        if (response.code === 'ERROR-005') {
-          console.log('재발급 후 api 재호출!');
-          return axios(originalRequest);
-        }
-        //* 재로그인(리프레쉬토큰 만료)
-        else if (response.code === 'ERROR-004') {
-          comfirm.open({
-            title: '안내',
-            message: response.message,
-            onConfirm() {
-              window.location.href = '/';
-              // navigator('/');
-            },
-          });
-          return;
-        }
+        const axiosError = err as AxiosError;
+        // 서버 에러 공통 오류 처리
+        // if (err.status === 500) {
+        //   comfirm.open({
+        //     title: '안내',
+        //     message:
+        //       '요청을 처리하는 중에 오류가 발생했습니다. 문제가 지속되면 고객 지원팀에 문의해 주세요.',
+        //   });
+        //   return;
+        // }
+        const error = axiosError.response?.data as errorType;
+        console.log('에러객체는 = ' + error);
       }
-      return Promise.reject(error);
+
+      // if (error.response?.status === 401 && !originalRequest._retry) {
+      //   try {
+      //     // 401 오류 → 토큰 갱신 요청
+      //     const refreshResponse = await axios.post(
+      //       'refresh토큰으로 새로운 액세스 토큰 발급 api',
+      //       {},
+      //       { withCredentials: true },
+      //     );
+      //     localStorage.setItem('access_token', refreshResponse.data.accessToken);
+      //     originalRequest.headers.Authorization = `Bearer ${refreshResponse.data.accessToken}`;
+      //     return axios(originalRequest);
+      //   } catch (refreshError) {
+      //     console.error('리프레시 토큰 만료됨. 로그아웃 처리.');
+      //     localStorage.removeItem('access_token'); // 토큰 제거
+      //     window.location.href = '/'; // 로그인 페이지로 이동
+      //   }
+      // }
+      return Promise.reject(err);
     },
   );
-  //*==============================================================
 
   const post = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
     const { inData, onError, onSuccess } = axiosOptions;
@@ -134,8 +139,9 @@ export const useAxios = () => {
 
   const form = useCallback(async <T, R>(url: string, axiosOptions: axiosOptions<T, R>) => {
     const { inData, onError, onSuccess } = axiosOptions;
+    const params = new URLSearchParams(inData as any); // 객체를 URLSearchParams로 변환
     try {
-      const response = await api.post<responseType<R>>(url, inData, {
+      const response = await api.post<responseType<R>>(url, params, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -146,7 +152,6 @@ export const useAxios = () => {
       defaultErrorFunction(err, onError);
     }
   }, []);
-
   const defaultErrorFunction = (err: unknown, onError?: (err: unknown) => void) => {
     if (axios.isAxiosError(err)) {
       const axiosError = err as AxiosError;

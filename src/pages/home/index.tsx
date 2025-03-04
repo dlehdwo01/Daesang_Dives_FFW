@@ -68,6 +68,9 @@ const Home = () => {
                 inData: { test: 'test' },
                 onError: (err) => {
                   console.log(err);
+                  if (err.code == 401) {
+                    console.log('안녕하세요');
+                  }
                 },
               });
             }}
