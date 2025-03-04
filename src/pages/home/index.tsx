@@ -1,5 +1,5 @@
 import { usePopup } from '@/hooks/usePopup';
-import { Doughnut, Pie } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 import { callTest } from '../../api/test';
 import { ChangePwdModal } from '../../components/ChangePwdModal';
 import { UIButton } from '../../components/UI/atoms/UIButton';
