@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Security from './components/Security';
 import { UILoading } from './components/UI/organisms/UILoading';
+import Login from './pages';
 
 const pageRoutes = import.meta.glob<{ default: React.ComponentType<any> }>(
   './pages/**/[a-z[]*.tsx',
@@ -10,6 +11,16 @@ const pageRoutes = import.meta.glob<{ default: React.ComponentType<any> }>(
 export const AppRoutes = () => {
   return (
     <Routes>
+      <Route
+        path={'/'}
+        element={
+          <React.Suspense fallback={<UILoading isOpen={true} />}>
+            <Security>
+              <Login />
+            </Security>
+          </React.Suspense>
+        }
+      />
       {Object.keys(pageRoutes).map((filePath) => {
         const routePath = filePath
           .replace('./pages', '') // ./pages 제거
