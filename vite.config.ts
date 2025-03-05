@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd()); // import.meta.env undefined 오류로 인해 loadEnv를 사용하여 env 객체 생성
   return {
     server: {
+      port: Number(env.WEB_PORT),
       proxy: {
         '/api': {
           target: env.VITE_API_URL, // 로컬
