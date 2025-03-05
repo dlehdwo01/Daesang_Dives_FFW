@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 import { callLogin } from '@/api/login';
-import * as JSEncrypt from 'js-encrypt';
+import * as JSEncrypt from 'jsencrypt';
 import { UIButton } from '../components/UI/atoms/UIButton';
 import { UIFlex } from '../components/UI/atoms/UIFlex';
 import { UIInput } from '../components/UI/atoms/UIInput';
