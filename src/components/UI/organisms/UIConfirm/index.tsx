@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { UIButton } from '../../atoms/UIButton';
 import { UIFlex } from '../../atoms/UIFlex';
 import { UIModal } from '../../atoms/UIModal';
@@ -6,12 +7,17 @@ import { useConfirmStore } from './store';
 
 export const UIConfirm = () => {
   const { data, isOpen, close } = useConfirmStore();
+  const ref = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    ref.current?.focus();
+  }, [data]);
   return (
     <>
       <UIModal isOpen={isOpen}>
-        <UICard title={data.title} message={data.message} className="min-w-2xs">
+        <UICard title={data.title ?? '안내'} message={data.message} className="min-w-2xs">
           <UIFlex className="gap-5 mt-4">
             <UIButton.Submit
+              ref={ref}
               onClick={() => {
                 close();
                 data.onConfirm?.();

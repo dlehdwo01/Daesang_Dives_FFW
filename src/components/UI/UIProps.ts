@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode, RefObject } from 'react';
 
-export type UIProps = {
+export type UIProps<T = HTMLElement> = {
+  ref?: RefObject<T>;
   className?: string;
-  children: ReactNode;
+  onClick?: () => void;
 };

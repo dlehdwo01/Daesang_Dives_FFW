@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 
 import { callLogin } from '@/api/login';
 import * as JSEncrypt from 'jsencrypt';
+import { useNavigate } from 'react-router-dom';
 import { UIButton } from '../components/UI/atoms/UIButton';
 import { UIFlex } from '../components/UI/atoms/UIFlex';
 import { UIInput } from '../components/UI/atoms/UIInput';
@@ -12,13 +13,14 @@ import { UICard } from '../components/UI/molecules/UICard';
 import { UILayout } from '../components/UI/organisms/UILayout';
 import { UILoading } from '../components/UI/organisms/UILoading';
 import { usePopup } from '../hooks/usePopup';
-import { useNavigate } from 'react-router-dom';
+import { useConfirmStore } from '@/components/UI/organisms/UIConfirm/store';
 
 const Login = () => {
   const navigate = useNavigate();
-  const username = useRef('');
-  const password = useRef('');
-  // const rememberMe = useRef<HTMLInputElement>(null);
+  const confirm = useConfirmStore();
+  const username = useRef<HTMLInputElement | null>(null);
+  const password = useRef<HTMLInputElement | null>(null);
+  const autoLogin = useRef<HTMLInputElement | null>(null);
   const popup = usePopup();
   const publicKey = useRef('');
   // const confirm = useConfirmStore();
@@ -28,10 +30,12 @@ const Login = () => {
     getPublicKey({
       inData: {},
       onSuccess: (res) => {
-        console.log('응답데이터=>', res);
         publicKey.current = res.data.publicKey;
       },
     });
+    if (username.current !== null) {
+      username.current.focus();
+    }
   }, []);
 
   const encryptPassword = (password: string, publicKey: string) => {
@@ -40,23 +44,44 @@ const Login = () => {
     return encryptor.encrypt(password) as string;
   };
 
-  const onLogin = () => {
-    console.log('로그인 클릭');
+  const onEnterKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      onLogin();
+    }
+  };
 
-    login({
-      inData: {
-        username: username.current,
-        password: encryptPassword(password.current, publicKey.current),
-      },
-      onSuccess: () => {
-        navigate('/home');
-        // if (res.result === 'failed') {
-        //   confirm.open({ message: '아이디 또는 비밀번호가 일치하지 않습니다.' });
-        // } else {
-        //   navigate('/home');
-        // }
-      },
-    });
+  const noneInputError = (str: string, ref: RefObject<HTMLInputElement | null>) => {
+    setTimeout(() => {
+      confirm.open({
+        message: `${str}를 입력해 주세요`,
+        onConfirm: () => {
+          ref.current?.focus();
+        },
+      });
+    }, 100);
+  };
+
+  const onLogin = () => {
+    console.log(autoLogin.current?.checked);
+    if (username.current !== null && password.current !== null) {
+      if (username.current.value === '') {
+        noneInputError('사원번호', username);
+        return;
+      }
+      if (password.current.value === '') {
+        noneInputError('비밀번호', password);
+        return;
+      }
+      login({
+        inData: {
+          username: username.current.value,
+          password: encryptPassword(password.current.value, publicKey.current),
+        },
+        onSuccess: () => {
+          navigate('/home');
+        },
+      });
+    }
   };
   return (
     <UILayout.Center>
@@ -65,17 +90,28 @@ const Login = () => {
         <UILogo />
         <UICard className="space-y-6 mt-8">
           <UIText>사원번호</UIText>
-          <UIInput ref={username} placeholder="사원번호를 입력해주세요." />
+          <UIInput
+            ref={username}
+            placeholder="사원번호를 입력해주세요."
+            onKeyDown={(e) => onEnterKeyDown(e)}
+          />
           <UIText>비밀번호</UIText>
-          <UIInput ref={password} type="password" placeholder="비밀번호를 입력해주세요." />
+          <UIInput
+            ref={password}
+            type="password"
+            placeholder="비밀번호를 입력해주세요."
+            onKeyDown={(e) => onEnterKeyDown(e)}
+          />
           <UIFlex.Row.Between>
             <UIFlex.Row.Center>
               <input
+                ref={autoLogin}
+                id="autoLogin"
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 disabled:cursor-wait disabled:opacity-50"
               />
-              <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-700 ">
-                Remember me
+              <label htmlFor="autoLogin" className="ml-2 block text-sm text-gray-700 ">
+                자동 로그인
               </label>
             </UIFlex.Row.Center>
             {/* 이 부분은 로그인 실패시 안내 생각 해보기 */}

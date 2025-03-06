@@ -1,9 +1,11 @@
+import { ReactNode } from 'react';
 import { UIFlex } from '../../atoms/UIFlex';
 import { UIText } from '../../atoms/UIText';
 import { UIProps } from '../../UIProps';
 type UICardProps = UIProps & {
   title?: string;
   message?: string;
+  children: ReactNode;
 };
 
 export const UICard = ({ children, className, title, message }: UICardProps) => {

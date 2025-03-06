@@ -4,21 +4,21 @@ import { useLocation } from 'react-router-dom';
 import { UIHeader } from '../UI/organisms/UIHeader';
 import { UILayout } from '../UI/organisms/UILayout';
 
-const Security = ({ children }: { children: ReactNode }) => {
+const Page = ({ children }: { children: ReactNode }) => {
   const path = useLocation();
-  const noRender = ['/']; // 헤더 미출력 주소 입력 (로그인)
   const userStore = useUserStore();
   // const [auth, setAuth] = useState(true);
   // const navigator = useNavigate();
   useEffect(() => {
+    console.log('현재 페이지=>', path.pathname);
     userStore.setUrl(path.pathname);
   }, [path]);
 
   return (
     <UILayout.Page>
-      {noRender.some((str) => path.pathname !== str) && <UIHeader />}
+      <UIHeader />
       {children}
     </UILayout.Page>
   );
 };
-export default Security;
+export default Page;
