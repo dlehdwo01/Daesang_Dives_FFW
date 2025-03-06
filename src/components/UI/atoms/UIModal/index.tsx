@@ -9,7 +9,14 @@ export const UIModal = ({ isOpen, children }: { isOpen: boolean; children: React
       {root &&
         isOpen &&
         createPortal(
-          <div className="fixed z-50 top-0 left-0  w-screen h-screen bg-[rgba(0,0,0,0.05)] items-center flex justify-center">
+          <div
+            className="fixed z-50 top-0 left-0  w-screen h-screen bg-[rgba(0,0,0,0.05)] items-center flex justify-center"
+            onKeyDown={(e) => {
+              if (e.key === 'Tab') {
+                e.preventDefault();
+              }
+            }}
+          >
             {children}
           </div>,
           root,

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Security from './components/Security';
+import Page from './components/Page';
 import { UILoading } from './components/UI/organisms/UILoading';
 import Login from './pages';
+import { UILayout } from './components/UI/organisms/UILayout';
 
 const pageRoutes = import.meta.glob<{ default: React.ComponentType<any> }>(
   './pages/**/[a-z[]*.tsx',
@@ -15,9 +16,11 @@ export const AppRoutes = () => {
         path={'/'}
         element={
           <React.Suspense fallback={<UILoading isOpen={true} />}>
-            <Security>
+            {/* <Page> */}
+            <UILayout.Page>
               <Login />
-            </Security>
+            </UILayout.Page>
+            {/* </Page> */}
           </React.Suspense>
         }
       />
@@ -34,9 +37,9 @@ export const AppRoutes = () => {
             path={routePath}
             element={
               <React.Suspense fallback={<UILoading isOpen={true} />}>
-                <Security>
+                <Page>
                   <PageComponent />
-                </Security>
+                </Page>
               </React.Suspense>
             }
           />
