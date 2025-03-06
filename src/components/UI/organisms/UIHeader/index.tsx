@@ -4,11 +4,19 @@ import { UIButton } from '../../atoms/UIButton';
 import { UIFlex } from '../../atoms/UIFlex';
 import { UILogo } from '../../atoms/UILogo';
 import { UIText } from '../../atoms/UIText';
+import { callLogout } from '@/api/logout';
 
 export const UIHeader = () => {
+  const navigate = useNavigate();
+  const { logout } = callLogout();
   // 로그아웃 클릭시
-  const logout = useCallback(() => {
-    console.log('로그아웃 클릭');
+  const onClickLogout = useCallback(() => {
+    logout({
+      inData: {},
+      onSuccess: () => {
+        navigate('/');
+      },
+    });
   }, []);
 
   return (
@@ -29,7 +37,14 @@ export const UIHeader = () => {
             <UIText>유엔아이컴퍼니</UIText>
           </UIFlex.Column>
           <div>
-            <UIButton onClick={logout}>로그아웃</UIButton>
+            <UIButton
+              onClick={() => {
+                navigate('/');
+              }}
+            >
+              로그인
+            </UIButton>
+            <UIButton onClick={onClickLogout}>로그아웃</UIButton>
           </div>
         </UIFlex.Row.BaseLine>
       </UIFlex.Row.Between>

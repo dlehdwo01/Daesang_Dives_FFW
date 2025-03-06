@@ -7,9 +7,9 @@ import { UIText } from '../UI/atoms/UIText';
 import { UIFlex } from '../UI/atoms/UIFlex';
 
 export const ChangePwdModal = ({ isOpen, close }: { isOpen: boolean; close: () => void }) => {
-  const nowpwd = useRef('');
-  const nextpwd = useRef('');
-  const nextpwd2 = useRef('');
+  const nowpwd = useRef<HTMLInputElement | null>(null);
+  const nextpwd = useRef<HTMLInputElement | null>(null);
+  const nextpwd2 = useRef<HTMLInputElement | null>(null);
   return (
     <UIModal isOpen={isOpen}>
       <UICard
@@ -41,9 +41,6 @@ export const ChangePwdModal = ({ isOpen, close }: { isOpen: boolean; close: () =
         <UIFlex.Row.Between className="mt-6 gap-1">
           <UIButton.Submit
             onClick={() => {
-              console.log(nowpwd.current);
-              console.log(nowpwd.current);
-              console.log(nowpwd.current);
               close();
             }}
           >

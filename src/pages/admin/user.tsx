@@ -26,7 +26,7 @@ const User = () => {
   const searchVal = useRef('');
   const editUser = usePopup();
   const createUser = usePopup();
-  const id = useRef<string>('');
+  const id = useRef<HTMLInputElement | null>(null);
   // const grade = useRef<string>('');
   const onSearch = () => {};
   const onDelete = ({ callback }: { callback?: () => void }) => {

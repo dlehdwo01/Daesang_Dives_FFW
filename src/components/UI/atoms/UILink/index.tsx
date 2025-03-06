@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
 import { UIProps } from '../../UIProps';
+import { ReactNode } from 'react';
 
-type UILinkProps = UIProps & {
+type LinkProps = UIProps & {
   to: string;
   onClick?: () => void;
+  children: ReactNode;
 };
 
-export const UILink = ({ children, className, to, onClick }: UILinkProps) => {
+export const UILink = ({ children, className, to, onClick }: LinkProps) => {
   return (
     <Link
       to={to}
