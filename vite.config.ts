@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => {
         '/api': {
           target: env.VITE_API_URL, // 로컬
           changeOrigin: true,
+          secure: false, // 추가: HTTP 접속 허용 (개발용)
         },
       },
     },
